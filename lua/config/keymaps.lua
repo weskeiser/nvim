@@ -99,7 +99,9 @@ map('i' ,'<DEL>', '')
 map("n", "<Leader>,", "<C-^>")
 --map("n", "<Leader>b", ":buffers<CR>")
 map("n", "gB", ":bnext<CR>")
+map("n", "<Right>", ":bnext<CR>")
 map("n", "gb", ":bprev<CR>")
+map("n", "<Left>", ":bprev<CR>")
 
 map("n", '<A-1>', '<Cmd>BufferGoto 1<CR>')
 map("n", '<A-2>', '<Cmd>BufferGoto 2<CR>')
@@ -111,6 +113,10 @@ map("n", '<A-7>', '<Cmd>BufferGoto 7<CR>')
 map("n", '<A-8>', '<Cmd>BufferGoto 8<CR>')
 map("n", '<A-9>', '<Cmd>BufferGoto 9<CR>')
 map("n", '<A-0>', '<Cmd>BufferLast<CR>')
+
+-- Arrow keys to scroll
+map('n', '<Down>', "<Cmd>lua require('neoscroll').scroll(0.10, false, 100)<CR>")
+map('n', '<Up>', "<Cmd>lua require('neoscroll').scroll(-0.10, false, 100)<CR>")
 
 
 

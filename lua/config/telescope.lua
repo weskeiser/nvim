@@ -2,6 +2,13 @@ local actions = require("telescope.actions")
 
 require('telescope').setup({
   defaults = {
+    path_display = function(opts, path)
+      local tail = require("telescope.utils").path_tail(path)
+      local test = #tail
+      newL = 35 - test
+      local spaces = string.rep(" ", newL)
+      return string.format("%s %s [%s]", tail, spaces, path)
+    end,
     file_ignore_patterns = { "node_modules" },
     mappings = {
       i = {
