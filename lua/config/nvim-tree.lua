@@ -16,6 +16,8 @@ require("nvim-tree").setup({
     signcolumn = 'yes',
     mappings = {
       list = {
+        { key = "<C-o>", action = "vsplit" },
+
         { key = "<ESC>", action = "close" },
         { key = "..", action = "dir_up" },
         { key = "cd", action = "cd" },
@@ -48,24 +50,25 @@ require("nvim-tree").setup({
         file = true,
         folder = true,
         folder_arrow = true,
-        git = true,
+        git = false,
       },
     },
     group_empty = false,
   },
   filters = {
-    dotfiles = true,
+    dotfiles = false,
   },
   filesystem_watchers = {
     enable = true,
     debounce_delay = 50,
   },
   actions = {
-    --[[
     open_file = {
-      resize_window = true,
+      quit_on_open = true,
+       window_picker = {
+         enable = false,
+       },
     },
-    ]]--
     use_system_clipboard = true,
     change_dir = {
       enable = true,

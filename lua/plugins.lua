@@ -71,7 +71,7 @@ return require('packer').startup(function()
   -- use { 'p00f/nvim-ts-rainbow' }
 
   -- Barbar Bufferlines
-  use 'romgrk/barbar.nvim'
+--  use 'romgrk/barbar.nvim'
 
   -- Indent blankline
   use 'lukas-reineke/indent-blankline.nvim'

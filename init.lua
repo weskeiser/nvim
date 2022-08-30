@@ -1,5 +1,4 @@
 vim.g.mapleader = " "
-
 require ('plugins')
 require ('config/material')
 vim.cmd 'colorscheme material' -- after theme and before statusline
@@ -18,7 +17,7 @@ require ('config/options')
 require ('config/harpoon')
 require ('config/indent-blankline')
 require ('config/formatter')
-require ('config/barbar')
+--require ('config/barbar')
 
 --[[
 -- Align barbar with nvimtree
@@ -49,10 +48,12 @@ vim.cmd 'au TextYankPost * silent! lua vim.highlight.on_yank({ higroup = "IncSea
 local autocmd = vim.api.nvim_create_autocmd
 
 -- Close NvimTree
+--[[
 autocmd('BufLeave', {
   pattern = 'NvimTree_1',
   command = "NvimTreeClose"
 })
+]]--
 
 -- Open :help as vsplit
 autocmd('BufEnter', {
@@ -69,3 +70,5 @@ autocmd('BufEnter', {
 --autocmd('BufEnter', {
 --  command = "call feedkeys('12j')"
 --})
+
+

@@ -25,15 +25,17 @@ map("v", "c", '"+c')
 map("n", "C", '"+C')
 map("v", "C", '"+C')
 
--- Saving and quitting
-map("n", "<C-s>", ":w!<cr>")
-map("i", "<C-s>", "<ESC>:w!<cr>")
+-- Save and quit
+map("n", "<C-s>", ":silent :w!<cr>", { noremap = true, silent = true })
+map("i", "<C-s>", "<ESC>:silent: w!<cr>", { noremap = true, silent = true })
 
-map("n", "qq", "<Cmd>BufferClose<CR>")
-map("v", "qq", "<Cmd>BufferClose<CR>")
-map("n", "<C-q>", ":q!<cr>")
-map("v", "<C-q>", ":q!<cr>")
-map("i", "<C-q>", "<ESC>:q!<cr>")
+map("n", "qq", ":silent :close<CR>", { noremap = true, silent = true })
+map("v", "qq", ":silent :close<CR>", { noremap = true, silent = true })
+map("n", "<C-q>", ":silent :q!<cr>", { noremap = true, silent = true })
+map("v", "<C-q>", ":silent :q!<cr>", { noremap = true, silent = true })
+map("i", "<C-q>", "<ESC>:silent :q!<cr>", { noremap = true, silent = true })
+
+map('n', '<C-Space>', ':silent :close<CR>', { noremap = true, silent = true })
 
 -- Map macros to q5
 map('n', 'q', '')
@@ -72,11 +74,12 @@ map('n', 'd]]', '"+d]}')
 map("n", "<leader>j", "<cmd>lua require('telescope.builtin').find_files()<cr>")
 map("n", "<leader>g", "<cmd>lua require('telescope.builtin').live_grep()<cr>")
 map("n", "<leader>b", "<cmd>lua require('telescope.builtin').buffers()<cr>")
+map("n", "<leader>k", "<cmd>lua require('telescope.builtin').buffers()<cr>")
 -- map("n", "<leader>fh", "<cmd>lua require('telescope.builtin').help_tags(require('telescope.themes').get_dropdown({}))<cr>", {noremap = true})
 
 -- Harpoon keymaps
-map("n", "<leader>k", "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>")
-map("n", "<leader>m", "<cmd>lua require('harpoon.mark').add_file()<cr>")
+map("n", "<leader>l", "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>")
+map("n", "<leader>v", "<cmd>lua require('harpoon.mark').add_file()<cr>")
 map("n", "<leader>hc", "<cmd>lua require('harpoon.cmd-ui').toggle_quick_menu()<cr>")
 
 map("n", "<leader>a", "<cmd>lua require('harpoon.ui').nav_file(1)<cr>")
@@ -114,26 +117,32 @@ map("n", '<A-8>', '<Cmd>BufferGoto 8<CR>')
 map("n", '<A-9>', '<Cmd>BufferGoto 9<CR>')
 map("n", '<A-0>', '<Cmd>BufferLast<CR>')
 
+-- Window navigation
+map('n', '<C-h>', '<C-w>h')
+map('i', '<C-h>', '<C-w>h')
+map('n', '<C-l>', '<C-w>l')
+map('i', '<C-l>', '<C-w>l')
+-- Exchange window with neighbouring window
+map('n', '<C-S-l>', '<C-w>x<C-w><C-l>')
+map('n', '<C-S-h>', '<C-w>h<C-w>x')
+
 -- Arrow keys to scroll
 map('n', '<Down>', "<Cmd>lua require('neoscroll').scroll(0.10, false, 100)<CR>")
 map('n', '<Up>', "<Cmd>lua require('neoscroll').scroll(-0.10, false, 100)<CR>")
 
+-- Terminal
+map('t', '<Esc>', '<C-\\><C-n>')
+
+map('t', '<C-\\><C-N><C-w>h', '<C-w>h')
+map('t', '<C-\\><C-N><C-w>j', '<C-w>j')
+map('t', '<C-\\><C-N><C-w>k', '<C-w>k')
+map('t', '<C-\\><C-N><C-w>l', '<C-w>l')
 
 
+-- Add numbered navigation to jump list
+map('n', 'k', [[(v:count > 1 ? "m'" . v:count : '') . 'gk' ]], {noremap = true, expr = true})
+map('n', 'j', [[(v:count > 1 ? "m'" . v:count : '') . 'gj' ]], {noremap = true, expr = true})
 
--- Window navigation
-
---[[
-map("n", "<C-h>", "<C-w><C-h>")
-map("n", "<C-u>", "<C-w><C-k>")
-map("n", "<C-d>", "<C-w><C-j>")
-map("n", "<C-l>", "<C-w><C-l>")
-
-map("i", "<C-h>", "<C-w><C-h>")
-map("i", "<C-u>", "<C-w><C-k>")
-map("i", "<C-d>", "<C-w><C-j>")
-map("i", "<C-l>", "<C-w><C-l>")
-]]--
 
 
 

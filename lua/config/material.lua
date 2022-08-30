@@ -4,8 +4,9 @@ vim.g.material_style = "palenight"
 local c = {
   green_primary =  '#6da832',
   orange_primary =  '#f99157',
-  bg = '#212a3b',
-  bg_dark = '#273145',
+  orange_darker = '#f76f26',
+  bg = '#303d55',
+  bg_dark = '#212a3b',
   bright_green = '#66FF00',
   light_grey = '#a6accd',
   dark_grey = '#313547',
@@ -59,7 +60,7 @@ require('material').setup({
 
 	custom_highlights = {
     -- Telescope
-    TelescopeNormal = { fg =  c.green_primary, bg = c.bg },
+    TelescopeNormal = {  bg = c.bg },
     TelescopePromptNormal = { fg = c.orange_primary, bg = c.bg },
 
 
@@ -76,14 +77,14 @@ require('material').setup({
 
     TelescopeSelection = { fg = c.bright_green },
     TelescopeSelectionCaret = { fg = c.bright_green },
-    TelescopeMatching = { fg = ''},
+    TelescopeMatching = { fg = c.orange_primary},
 
     --NvimTree
-    NvimTreeNormalNC = { bg = c.bg_dark},
-    NvimTreeFolderName = { fg =  c.string_green},
-    NvimTreeOpenedFolderName = { fg =  c.string_green },
-    NvimTreeRootFolder = { fg = c.orange_primary },
-    --NvimTreeVertSplit = { fg= c.bg_dark, bg= c.bg_dark},
+    NvimTreeNormalNC = { bg = c.bg_dark_dark},
+    NvimTreeFolderName = { fg =  c.orange_darker},
+    NvimTreeOpenedFolderName = { fg =  c.orange_primary },
+    NvimTreeRootFolder = { fg = c.green_primary },
+    --NvimTreeVertSplit = { fg= c.bg_dark_dark, bg= c.bg_dark},
     NvimTreeVertSplit = { fg= c.green_primary, bg= c.green_primary},
 
     -- Indent Blankline

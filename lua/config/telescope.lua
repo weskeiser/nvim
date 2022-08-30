@@ -5,15 +5,17 @@ require('telescope').setup({
     path_display = function(opts, path)
       local tail = require("telescope.utils").path_tail(path)
       local test = #tail
-      newL = 35 - test
+      newL = 25 - test
       local spaces = string.rep(" ", newL)
       return string.format("%s %s [%s]", tail, spaces, path)
     end,
     file_ignore_patterns = { "node_modules" },
     mappings = {
       i = {
+        ["<C-o>"] = actions.select_vertical,
       },
       n = {
+        ["<C-o>"] = actions.select_vertical,
       }
     },
     prompt_prefix = "    ",

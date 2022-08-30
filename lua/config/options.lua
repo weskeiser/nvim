@@ -21,6 +21,11 @@ vim.o.signcolumn = 'yes:1'
 vim.o.cmdheight = 1
 --vim.opt.formatoptions = "njvcrql"
 
+vim.g.terminal_color_1 = '#fffff'
+vim.g.terminal_color_2 = '#fffff'
+vim.g.terminal_color_3 = '#fffff'
+vim.g.terminal_color_4 = '#fffff'
+
 
 vim.o.shortmess = vim.o.shortmess .. 'cI'
 --vim.o.colorcolumn = '80'

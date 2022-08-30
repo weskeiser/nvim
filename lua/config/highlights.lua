@@ -1,8 +1,10 @@
 local c = {
   --bg = '#273145',
-  bg = '#2c374e',
-  --bg_dark = '#212a3b',
-  bg_dark = '#273145',
+ -- bg = '#2c374e',
+  bg = '#303d55',
+  bg_dark = '#303d55',
+  -- now bg_dark = '#212a3b',
+  --bg_dark = '#273145',
   green_primary =  '#6da832',
   orange_primary =  '#f99157',
   bright_green = '#66FF00',
@@ -16,6 +18,8 @@ local c = {
 local highlights = {
   -- Lsp
   Pmenu = { fg = '', bg = '#46577c' },
+  DiagnosticVirtualTextHint = { fg = c.orange_primary },
+  --DiagnosticSignHint = { fg = c.orange_primary },
 
   -- Nvim Foreground and Background
   Normal = { bg = c.bg },
