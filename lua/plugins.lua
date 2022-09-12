@@ -68,7 +68,11 @@ return require('packer').startup(function()
     'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'
   }
 
-  -- use { 'p00f/nvim-ts-rainbow' }
+  use 'nvim-treesitter/playground'
+
+  use 'nvim-treesitter/nvim-treesitter-refactor'
+
+  use { 'p00f/nvim-ts-rainbow' }
 
   -- Barbar Bufferlines
 --  use 'romgrk/barbar.nvim'
@@ -84,6 +88,8 @@ return require('packer').startup(function()
   use 'neovim/nvim-lspconfig'
   use 'hrsh7th/cmp-nvim-lsp'
   use 'hrsh7th/cmp-buffer'
+  use 'hrsh7th/cmp-path'
+  use 'hrsh7th/cmp-cmdline'
   use 'hrsh7th/nvim-cmp'
   use 'onsails/lspkind-nvim'
   use 'nvim-lua/lsp_extensions.nvim'
@@ -93,19 +99,23 @@ return require('packer').startup(function()
   use 'saadparwaiz1/cmp_luasnip'
   use 'neoclide/vim-jsx-improve'
   use 'leafgarland/typescript-vim'
+  use 'mattn/emmet-vim'
 
-  use 'nvim-treesitter/nvim-treesitter-refactor'
 
   use 'mhartington/formatter.nvim'
   use 'fsouza/prettierd'
 
-  use 'styled-components/vim-styled-components'
+  --use 'styled-components/vim-styled-components'
 
 
   -- Autopairs
   use {
     "windwp/nvim-autopairs",
       config = function() require("nvim-autopairs").setup {} end
+  }
+
+  use {
+    'windwp/nvim-ts-autotag'
   }
 
   -- Vim-surround

@@ -25,11 +25,14 @@ local modes = {
 
 
 local c = {
+  funkygreen = '#18d18d' ,
   fg = "#685c56",
   bg = "#f99157",
   accent = '#f99157',
-  background = "#303d55",
+  --background = "#303d55",
+  background = '#2b2b2c',
   orange_primary =  '#f99157',
+  bluish = '#303d55',
   lightbg = "#e9e4e2",
   fgfaded = "#948985",
   grey = "#948985",
@@ -58,15 +61,17 @@ local c = {
 
 cmd("hi StatusLineAccent guifg=" .. c.light_grey .. " guibg=" .. c.accent or c.magenta)
 cmd("hi StatusLineLines guifg=" .. c.light_grey .. " guibg=" .. c.accent)
-cmd("hi StatusLineTotalLines guifg=" .. c.light_grey .. " guibg=" .. c.accent)
+cmd("hi StatusLineTotalLines guifg=" .. c.green .. " guibg=" .. c.accent)
 cmd("hi StatusLineInsertAccent guifg=" .. c.dark_grey .. " guibg=" .. c.eggwhite)
 cmd("hi StatusLineVisualAccent guifg=" .. c.dark_grey .. " guibg=" .. c.smoothgreen)
 cmd("hi StatusLineReplaceAccent guifg=" .. c.bg .. " guibg=" .. c.red)
 cmd("hi StatusLineCmdLineAccent guifg=" .. c.bg .. " guibg=" .. c.yellow)
 cmd("hi StatuslineTerminalAccent guifg=" .. c.bg .. " guibg=" .. c.yellow)
-cmd("hi StatusLineFilename guifg=" .. c.white .. " guibg=" .. c.yellow)
-cmd("hi StatusLineFilenameInactive guifg=" .. c.orange_primary .. " guibg=" .. c.background)
-cmd("hi StatusLineFilepath guifg=" .. c.background .. " guibg=" .. c.bg)
+--cmd("hi StatusLineFilename guifg=" .. c.white .. " guibg=" .. c.yellow)
+cmd("hi StatusLineFilename guifg=" .. c.funkygreen .. " guibg=" .. c.bluish)
+cmd("hi StatusLineFilenameInactive guifg=" .. c.funkygreen .. " guibg=" .. c.background)
+--cmd("hi StatusLineFilepath guifg=" .. c.background .. " guibg=" .. c.bg)
+cmd("hi StatusLineFilepath guifg=" .. c.orange_primary .. " guibg=" .. c.bluish)
 cmd("hi StatusLineExtra guifg=" .. c.light_grey .. " guibg=" .. c.bg)
 cmd("hi StatusLineBackground guibg=" .. c.bg)
 cmd("hi StatusLine guibg=" .. c.background)
@@ -85,6 +90,7 @@ local function filepath()
 
   return string.format(" %%<%s/", fpath)
 end
+
 
 -- Filename
 local function filename()
@@ -223,8 +229,10 @@ Statusline.active = function()
     update_mode_colors_general(),
     "%=",
 
-    update_mode_colors_filepath(),
+--    update_mode_colors_filepath(),
+    "%#StatusLineFilepath#",
     string.format("%s", filepath()),
+
     "%#StatusLineFilename#",
     filename(),
   }
@@ -232,15 +240,18 @@ end
 
 function Statusline.inactive()
   return table.concat {
-    "%=%#StatusLineFilenameInactive# %t ",
+    "%=",
+    "%#StatusLineFilenameInactive#%f | %#StatusLineFilename# %t ",
   }
 end
 
 function Statusline.short()
-  return "%#StatusLineFileName#   NvimTree"
+  return "%#StatusLineFilename#   NvimTree"
 end
 
--- Showing the statuslinevim.api.nvim_exec([[
+
+
+-- Showing the statusline
 vim.api.nvim_exec([[
   augroup Statusline
   au!
@@ -249,6 +260,7 @@ vim.api.nvim_exec([[
   au WinEnter,BufEnter,FileType NvimTree_1 setlocal statusline=%!v:lua.Statusline.short()
   augroup END
 ]], false)
+
 
 
 -- https://github.com/nuxshed/dotfiles/tree/main/config/nvim/lua

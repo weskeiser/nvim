@@ -2,15 +2,28 @@
 vim.g.material_style = "palenight"
 
 local c = {
+  white = '#ffffff',
   green_primary =  '#6da832',
   orange_primary =  '#f99157',
   orange_darker = '#f76f26',
-  bg = '#303d55',
+  --bg = '#303d55',
+  bg = '#2b2b2c',
   bg_dark = '#212a3b',
   bright_green = '#66FF00',
   light_grey = '#a6accd',
-  dark_grey = '#313547',
+  dark_grey = '#303d55',
   string_green = '#C3E88D',
+  indent1 = '#364367',
+  indent2 = '#4c5e90',
+  indent3 = '#3a4b78',
+  funkygreen = '#18d18d',
+  const = '#de7621',
+  variableDark = '#9774A8',
+  string = '#688458',
+  property = '#969cbb',
+  func = '#FEC56D',
+  identifier = '#a0afd9',
+  type = '#C792EA',
 
 }
 
@@ -59,20 +72,37 @@ require('material').setup({
 
 
 	custom_highlights = {
+
+    CmpItemAbbrDeprecated = { bg=NONE, gui=strikethrough, fg='#808080' },
+    CmpItemAbbrMatch = { bg=NONE, fg='#569CD6' },
+    CmpItemAbbrMatchFuzzy = { bg=NONE, fg='#569CD6' },
+    CmpItemKindText = { bg=NONE, fg='#9CDCFE' },
+    CmpItemKindProperty = { fg=NONE, fg='#D4D4D4' },
+    CmpItemKindUnit = { fg=NONE, fg='#D4D4D4' },
+    CmpItemKindFunction = { bg = '#323234', fg = c.const},
+    CmpItemKindConstant = { bg = '#323234', fg = c.green_primary },
+    CmpItemKindVariable = { bg = '#323234', fg = c.green_primary },
+    CmpItemKindMethod = { bg = '#727279', fg = c.identifier },
+    CmpItemKindField = { bg = '#727279', fg = c.identifier },
+    CmpItemKindModule = { bg = '#727279', fg = c.const },
+    CmpItemKindKeyword = { bg = '#727279', fg = c.const },
+    CmpItemKindInterface = { bg= '#323234', fg = c.type },
+
+
     -- Telescope
     TelescopeNormal = {  bg = c.bg },
     TelescopePromptNormal = { fg = c.orange_primary, bg = c.bg },
 
 
-    TelescopePromptTitle = { fg = c.orange_primary, bg=c.bg},
+    TelescopePromptTitle = { fg = c.funkygreen, bg=c.bg},
     TelescopePromptBorder = { fg =  c.green_primary, bg=c.bg},
     TelescopePromptCounter = { fg = c.orange_primary },
     TelescopePromptPrefix = { fg =  c.green_primary },
 
-    TelescopePreviewTitle = { fg = c.orange_primary },
+    TelescopePreviewTitle = { fg = c.funkygreen },
     TelescopePreviewBorder = { fg =  c.green_primary, bg=c.bg},
 
-    TelescopeResultsTitle = { fg = c.orange_primary, bg=c.bg},
+    TelescopeResultsTitle = { fg = c.funkygreen, bg=c.bg},
     TelescopeResultsBorder = { fg =  c.green_primary, bg=c.bg},
 
     TelescopeSelection = { fg = c.bright_green },
@@ -88,9 +118,18 @@ require('material').setup({
     NvimTreeVertSplit = { fg= c.green_primary, bg= c.green_primary},
 
     -- Indent Blankline
-    IndentBlanklineContextChar = { fg = '#4c5e90' },
-  }
-})
 
+    IndentBlanklineSpaceChar = { fg = '#A6ACCD',  nocombine=true},
+    IndentBlanklineContextStart = { special = '#000000', undercurl=true },
+
+    --Identifier = { fg = c.pink },
+    --TSText = { fg = c.pink },
+    --TSNone = { fg = c.pink },
+    },
+  })
+
+
+  --IndentBlanklineContextChar = { fg = c.indent2 },
+  --IndentBlanklineSpaceChar = { bg = '#18d18d',  gui=nocombine },
 
 

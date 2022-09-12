@@ -31,8 +31,7 @@ local lspkind = require("lspkind")
 cmp.setup({
 	snippet = {
 		expand = function(args)
-			-- For `luasnip` user.
-			--require("luasnip").lsp_expand(args.body)
+      require('luasnip').lsp_expand(args.body)
 		end,
 	},
 	mapping = cmp.mapping.preset.insert({
@@ -44,6 +43,7 @@ cmp.setup({
     --["<NL>"] = cmp.mapping.select_next_item(),
 	}),
 
+  --[[
 	formatting = {
 		format = function(entry, vim_item)
 			vim_item.kind = lspkind.presets.default[vim_item.kind]
@@ -52,17 +52,33 @@ cmp.setup({
 			return vim_item
 		end,
 	},
+  ]]--
+
+  formatting = {
+      fields = { "kind", "abbr", "menu" },
+      format = function(entry, vim_item)
+        local kind = require("lspkind").cmp_format({ mode = "symbol_text", maxwidth = 50 })(entry, vim_item)
+        local strings = vim.split(kind.kind, "%s", { trimempty = true })
+        kind.kind = " " .. strings[1] .. " "
+        kind.menu = "    (" .. strings[2] .. ")"
+
+        return kind
+      end,
+    },
 
 	sources = {
 		{ name = "nvim_lsp" },
-
-		-- For luasnip user.
-	--	{ name = "luasnip" },
-
-    --
+		{ name = "luasnip" },
 		{ name = "buffer" },
-
 	},
+
+  window = {
+    completion = {
+      winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
+      col_offset = -3,
+      side_padding = 0,
+    },
+  }
 })
 
 
@@ -77,10 +93,9 @@ local function config(_config)
 			nnoremap("<leader>e", function() vim.diagnostic.goto_next() end)
 			nnoremap("<leader>E", function() vim.diagnostic.goto_prev() end)
 			--nnoremap("<C-i>", function() vim.diagnostic.open_float() end)
-			--nnoremap("<C-K><C-I>", function() vim.lsp.buf.hover() end)
 			nnoremap("<leader>i", function() vim.lsp.buf.hover() end)
 			nnoremap("<leader>vws", function() vim.lsp.buf.workspace_symbol() end)
-			nnoremap("<leader>vca", function() vim.lsp.buf.code_action() end)
+			nnoremap("<leader>r", function() vim.lsp.buf.code_action() end)
 			nnoremap("<leader>vrr", function() vim.lsp.buf.references() end)
 			nnoremap("<leader>vrn", function() vim.lsp.buf.rename() end)
 		end,
@@ -90,10 +105,37 @@ end
 
 
 
+local lspconfig = require('lspconfig')
+local configs = require('lspconfig/configs')
 
-require("lspconfig").tsserver.setup(config())
-
-require("lspconfig").cssls.setup(config())
+lspconfig.tsserver.setup(config())
+lspconfig.cssls.setup(config())
+--[[
+lspconfig.emmet_ls.setup({
+    -- on_attach = on_attach,
+    capabilities = capabilities,
+    filetypes = { 'html', 'javascript', 'typescript', 'typescriptreact', 'javascriptreact', 'css', 'sass', 'scss', 'less' },
+    init_options = {
+      html = {
+        options = {
+          -- For possible options, see: https://github.com/emmetio/emmet/blob/master/src/config.ts#L79-L267
+          ["bem.enabled"] = true,
+          ["jsx.enabled"] = true,
+        },
+      },
+      typescriptreact = {
+        options = {
+          ["jsx.enabled"] = true,
+        }
+      },
+      javascriptreact = {
+        options = {
+          ["jsx.enabled"] = true,
+        }
+      },
+    }
+})
+]]--
 
 local opts = {
 	-- whether to highlight the currently hovered symbol

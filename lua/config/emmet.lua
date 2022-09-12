@@ -14,5 +14,11 @@ lspconfig.emmet_ls.setup({
           ["bem.enabled"] = true,
         },
       },
+      typescriptreact = {
+      ["jsx.enabled"] = true,
+      },
+      javascriptreact = {
+      ["jsx.enabled"] = true,
+      },
     }
 })

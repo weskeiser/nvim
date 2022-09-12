@@ -8,8 +8,6 @@ require ('config/lsp')
 require ('config/nvim-web-devicons')
 require ('config/neoscroll')
 require ('config/telescope')
-require ('config/keymaps')
-require ('config/emmet')
 require ('config/treesitter')
 require ('config/autopairs')
 require ('config/nvim-tree')
@@ -17,7 +15,8 @@ require ('config/options')
 require ('config/harpoon')
 require ('config/indent-blankline')
 require ('config/formatter')
---require ('config/barbar')
+require ('config/keymaps')
+
 
 --[[
 -- Align barbar with nvimtree
@@ -71,4 +70,9 @@ autocmd('BufEnter', {
 --  command = "call feedkeys('12j')"
 --})
 
-
+autocmd('VimEnter', {
+  command = ':unmap [%'
+})
+autocmd('VimEnter', {
+  command = ':unmap ]%'
+})

@@ -1,35 +1,89 @@
 local c = {
-  --bg = '#273145',
- -- bg = '#2c374e',
+  --[[
   bg = '#303d55',
-  bg_dark = '#303d55',
-  -- now bg_dark = '#212a3b',
-  --bg_dark = '#273145',
   green_primary =  '#6da832',
   orange_primary =  '#f99157',
   bright_green = '#66FF00',
   light_grey = '#a6accd',
   dark_grey = '#313547',
   string_green = '#C3E88D',
+  cyan = '#92cfe8',
+  --cyan = '#89DDFF',
+  blue = '#749ffb',
+  lightblue = '#8fb9f0',
+  propblue = '#A6ACCD',
+  pink = '#C792EA',
+  variable = '#788fc2'
 
+  ]]--
+
+  bg = '#2b2b2c',
+  bg_lighter = '#353536',
+  background = '#212122',
+  white = '#ffffff',
+  green_primary =  '#6da832',
+  orange_primary =  '#f99157',
+  bright_green = '#66FF00',
+  light_grey = '#a6accd',
+  dark_grey = '#313547',
+  string_green = '#C3E88D',
+  cyan = '#92cfe8',
+  --cyan = '#89DDFF',
+  blue = '#749ffb',
+  pink = '#C792EA',
+  lightblue = '#8fb9f0',
+  --const = '#CB7832',
+  const = '#de7621',
+  --variable = '#9774A8',
+  variable = '#a88bb6',
+  string = '#688458',
+  --property = '#969cbb',
+  property = '#b5b6ba',
+  --func = '#FEC56D',
+  func = '#fec671',
+  identifier = '#a0afd9',
+  bright_pink = '#EA68DB',
+  bright_blue = '#00A2FF',
+  bright_yellow = '#FFD100',
+  bluish = '#303d55',
+  yellow_error = '#FFCB6B',
+  red_error = '#FF5370',
 }
 
 
 local highlights = {
   -- Lsp
-  Pmenu = { fg = '', bg = '#46577c' },
-  DiagnosticVirtualTextHint = { fg = c.orange_primary },
-  --DiagnosticSignHint = { fg = c.orange_primary },
+
+  --[[
+  CmpItemAbbrDeprecated = { bg=NONE, gui=strikethrough, fg='#808080' },
+  CmpItemAbbrMatch = { bg=NONE, fg='#569CD6' },
+  CmpItemAbbrMatchFuzzy = { bg=NONE, fg='#569CD6' },
+  CmpItemKindVariable = { bg=NONE, fg='#9CDCFE' },
+  CmpItemKindInterface = { bg=NONE, fg='#9CDCFE' },
+  CmpItemKindText = { bg=NONE, fg='#9CDCFE' },
+  CmpItemKindFunction = { bg=NONE, fg='#C586C0' },
+  CmpItemKindMethod = { bg=NONE, fg='#C586C0' },
+  CmpItemKindKeyword = { bg=NONE, fg='#D4D4D4' },
+  CmpItemKindProperty = { bg=NONE, fg='#D4D4D4' },
+  CmpItemKindUnit = { bg=NONE, fg='#D4D4D4' },
+  ]]--
+
+  Pmenu = { fg = '', bg = '#2b2b2c' },
+
+  DiagnosticVirtualTextWarn = { fg = c.orange_primary, bg = c.bg_lighter },
+  DiagnosticVirtualTextError = {  fg = c.red_error, bg = c.bg_lighter },
+  DiagnosticVirtualTextHint = {  fg = c.yellow_error, bg = c.bg_lighter },
+
+  DiagnosticSignError = {  fg = c.bg, bg = c.red_error },
+  DiagnosticSignWarn = {  fg = c.bg, bg = c.orange_primary },
+  DiagnosticSignHint = {  fg = c.bg, bg = c.yellow_error },
 
   -- Nvim Foreground and Background
   Normal = { bg = c.bg },
-  NormalNC = { bg = c.bg_dark },
+  NormalNC = { bg = c.bg },
 
   -- Misc
-  MatchParen = { fg = c.bright_green },
-  IndentBlanklineContextChar = { fg = c.green_primary },
-  IndentBlanklineContextStart = { fg = c.green_primary },
-  IndentBlanklineChar = { fg = c.green_primary },
+  MatchParen = { fg = c.bright_green  },
 
   -- Cursor and Line Number
   LineNr = {fg = c.green_primary},
@@ -42,59 +96,67 @@ local highlights = {
   BufferCurrent = { fg =  c.orange_primary },
   BufferCurrentSign = { fg =  c.orange_primary },
 
-  BufferVisible = {fg = c.light_grey, bg = c.bg_dark },
-  BufferVisibleMod = { bg = c.bg_dark },
-  BufferVisibleSign = { fg=c.dark_grey, bg = c.bg_dark },
+  BufferVisible = {fg = c.light_grey, bg = c.background },
+  BufferVisibleMod = { bg = c.background },
+  BufferVisibleSign = { fg=c.dark_grey, bg = c.background },
 
   BufferInactive = {fg = c.light_grey, bg = c.dark_grey },
   BufferInactiveMod = { bg = c.dark_grey },
   BufferInactiveSign = { fg=c.dark_grey, bg = c.dark_grey },
 
   -- Tsx
-  -- '#6b9474' - nice green
-  --TSProperty = { fg = '#8c81d5' },
-  TSProperty = { fg = '#A6ACCD' },
-  Property = { fg = '#A6ACCD' },
-  TSTagAttribute = { fg = '#A6ACCD' },
-  TSParameter = { fg = '#95b0e9' },
-  --TSType = { fg = '#FFCB6B' },
-  TSTypeBuiltin = { fg = '#A6ACCD' },
-  TSConditional = { fg = '#89DDFF' },
-  TSConstMacro = { fg = '#C792EA' },
-  TSOperator = { fg = '#C792EA' },
-  Statement = { fg = '#C792EA' },
-  TSVariable = { fg = '#95b0e9' },
-  TSException = { fg = '#89DDFF' },
+  TSProperty = { fg = c.property },
+  Property = {fg = c.property },
+  TSTagAttribute = {fg = c.property },
+  TSTypeBuiltin = {fg = c.property },
+  Statement = { fg = c.const },
+  TSConstMacro = { fg = c.const },
+
+  TSVariable = { fg = c.variable },
+  TSParameter = { fg = c.variable },
+
+  TSRepeat = { fg = c.variable },
+
+  TSPunctDelimiter = { fg = c.func },
+  TSTag = { fg = c.func },
+
+  TSInclude = { fg = c.const },
+  TSURI = { fg = c.const },
+  TSInclude = { fg = c.const },
+  TSKeywordReturn = { fg = c.const },
+  TSPunctSpecial = { fg = c.identifier },
+  TSStorageClass = { fg = c.identifier },
+  TSException = { fg = c.identifier },
+  TSConditional = { fg = c.identifier },
+  TSEnvironment = { fg = c.identifier },
+  TSOperator = { fg = c.identifier },
+  TSPunctBracket = { fg = c.const },
+  TSTagDelimiter = { fg = c.const },
+
+  TSString = { fg = c.green_primary },
+
+  Identifier = { fg = c.identifier },
+  --TSText = { fg = c.identifier },
+  --TSNone = { fg = c.identifier },
+
+  TSType = { fg = c.pink},
+  TSTypeBuiltin = { fg = c.pink },
+
+
+  TSMethod = { fg = c.func },
+  TSMath = { fg = c.func },
+  TSFunction = { fg = c.func },
+  TSFuncMacro = { fg = c.func },
+  TSMethodCall = { fg = c.func },
+  TSConstructor = { fg = c.func },
+  TSFuncBuiltin = { fg = c.func },
   --Tag = { fg = '#ffffff' },
   --Special = { fg = '#ffffff' },
   --jsonTSLabel = { fg = '#A6ACCD' },
   --jsonNoise = { fg = '#ffffff' },
-  --Identifier = { fg = '#ffffff' },
 
-
-
-  --TSPunctBracket = { fg = '#c8a679' },
-  Identifier = { fg = '#a0afd9' },
-
-  styledAmpersand = { fg = '#C792EA' },
-
-
-  --typescriptIdentifierName = { fg = '#000000' },
-
---     tsxTSConstructor = { fg = '#ffffff' },
-
-  --tsxTSMethod = { fg = '#ffffff' },
-
-   --tsxTSPunctBracket = { fg = '#ffffff' },
-   --tsxTSPunctDelimiter = { fg = '#ffffff' },
-   --tsxTSConstructor = { fg = '#ffffff' },
-   --tsxTSInclude = { fg = '#ffffff' },
-   --tsxTSString = { fg = '#555555' },
-
-  --C792EA
-  --Identifier = { fg = '#F78C6C' }
-  --TSParameter = { fg = '#ffffff' },
 }
+
 
 for k, v in pairs(highlights) do
   vim.api.nvim_set_hl(0, k, v)
