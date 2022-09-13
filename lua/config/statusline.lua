@@ -53,6 +53,7 @@ local c = {
   smoothgreen = "#6da832",
   eggwhite = "#d1e0bc",
   white = '#ffffff',
+  yellow_error = '#FFCB6B',
   ViMode = {
     Normal = "#26363c",
   },
@@ -61,22 +62,21 @@ local c = {
 
 cmd("hi StatusLineAccent guifg=" .. c.light_grey .. " guibg=" .. c.accent or c.magenta)
 cmd("hi StatusLineLines guifg=" .. c.light_grey .. " guibg=" .. c.accent)
-cmd("hi StatusLineTotalLines guifg=" .. c.green .. " guibg=" .. c.accent)
+cmd("hi StatusLineTotalLines guifg=" .. c.dark_grey .. " guibg=" .. c.accent)
 cmd("hi StatusLineInsertAccent guifg=" .. c.dark_grey .. " guibg=" .. c.eggwhite)
 cmd("hi StatusLineVisualAccent guifg=" .. c.dark_grey .. " guibg=" .. c.smoothgreen)
 cmd("hi StatusLineReplaceAccent guifg=" .. c.bg .. " guibg=" .. c.red)
 cmd("hi StatusLineCmdLineAccent guifg=" .. c.bg .. " guibg=" .. c.yellow)
 cmd("hi StatuslineTerminalAccent guifg=" .. c.bg .. " guibg=" .. c.yellow)
---cmd("hi StatusLineFilename guifg=" .. c.white .. " guibg=" .. c.yellow)
 cmd("hi StatusLineFilename guifg=" .. c.funkygreen .. " guibg=" .. c.bluish)
 cmd("hi StatusLineFilenameInactive guifg=" .. c.funkygreen .. " guibg=" .. c.background)
---cmd("hi StatusLineFilepath guifg=" .. c.background .. " guibg=" .. c.bg)
 cmd("hi StatusLineFilepath guifg=" .. c.orange_primary .. " guibg=" .. c.bluish)
 cmd("hi StatusLineExtra guifg=" .. c.light_grey .. " guibg=" .. c.bg)
+cmd("hi StatusLineFileModified guifg=" .. c.light_grey .. " guibg=" .. c.funkygreen)
 cmd("hi StatusLineBackground guibg=" .. c.bg)
 cmd("hi StatusLine guibg=" .. c.background)
 
-cmd("hi LspDiagnosticsSignHint guifg=White" .. " guibg=" .. c.yellow)
+cmd("hi LspDiagnosticsSignHint guifg=White" .. " guibg=" .. c.yellow_error)
 cmd("hi LspDiagnosticsSignInformation guifg=#ffffff" ..  " guibg=" .. c.bg)
 cmd("hi LspDiagnosticsSignWarning guifg=" .. c.orange_primary ..  " guibg=White")
 cmd("hi LspDiagnosticsSignError guifg=White" .. " guibg=" .. c.red)
@@ -152,7 +152,7 @@ end
 
 -- File modified
 local function fileModified()
-  return " %m% "
+  return " %#StatusLineFileModified#%m% "
 end
 
 -- Line info
@@ -221,10 +221,10 @@ Statusline.active = function()
     string.format("%s", columnCount()),
 
     update_mode_colors_general(),
-    fileModified(),
+    lsp(),
 
     update_mode_colors_general(),
-    lsp(),
+    fileModified(),
 
     update_mode_colors_general(),
     "%=",
