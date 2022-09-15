@@ -43,17 +43,6 @@ cmp.setup({
     --["<NL>"] = cmp.mapping.select_next_item(),
 	}),
 
-  --[[
-	formatting = {
-		format = function(entry, vim_item)
-			vim_item.kind = lspkind.presets.default[vim_item.kind]
-			local menu = source_mapping[entry.source.name]
-			vim_item.menu = menu
-			return vim_item
-		end,
-	},
-  ]]--
-
   formatting = {
       fields = { "kind", "abbr", "menu" },
       format = function(entry, vim_item)
@@ -81,25 +70,27 @@ cmp.setup({
   }
 })
 
+local on_attach = function()
+  nnoremap("gd", function() vim.lsp.buf.definition() end)
+  nnoremap("gD", function() vim.lsp.buf.declaration() end)
+  nnoremap("gt", function() vim.lsp.buf.type_definition() end)
+  nnoremap("gi", function() vim.lsp.buf.implementation() end)
+  nnoremap("<leader>e", function() vim.diagnostic.goto_next() end)
+  nnoremap("<leader>E", function() vim.diagnostic.goto_prev() end)
+  --nnoremap("<C-i>", function() vim.diagnostic.open_float() end)
+  nnoremap("<leader>i", function() vim.lsp.buf.hover() end)
+  nnoremap("<leader>vws", function() vim.lsp.buf.workspace_symbol() end)
+  nnoremap("<leader>r", function() vim.lsp.buf.code_action() end)
+  nnoremap("<leader>vrr", function() vim.lsp.buf.references() end)
+  nnoremap("<leader>vrn", function() vim.lsp.buf.rename() end)
+end
+
 
 local function config(_config)
 	return vim.tbl_deep_extend("force", {
 		capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities()),
-		on_attach = function()
-			nnoremap("gd", function() vim.lsp.buf.definition() end)
-			nnoremap("gD", function() vim.lsp.buf.declaration() end)
-			nnoremap("gt", function() vim.lsp.buf.type_definition() end)
-			nnoremap("gi", function() vim.lsp.buf.implementation() end)
-			nnoremap("<leader>e", function() vim.diagnostic.goto_next() end)
-			nnoremap("<leader>E", function() vim.diagnostic.goto_prev() end)
-			--nnoremap("<C-i>", function() vim.diagnostic.open_float() end)
-			nnoremap("<leader>i", function() vim.lsp.buf.hover() end)
-			nnoremap("<leader>vws", function() vim.lsp.buf.workspace_symbol() end)
-			nnoremap("<leader>r", function() vim.lsp.buf.code_action() end)
-			nnoremap("<leader>vrr", function() vim.lsp.buf.references() end)
-			nnoremap("<leader>vrn", function() vim.lsp.buf.rename() end)
-		end,
-	}, _config or {})
+		on_attach = on_attach,
+  }, _config or {})
 end
 			-- inoremap("<C-h>", function() vim.lsp.buf.signature_help() end)
 
@@ -110,38 +101,8 @@ local configs = require('lspconfig/configs')
 
 lspconfig.tsserver.setup(config())
 lspconfig.cssls.setup(config())
---[[
-lspconfig.emmet_ls.setup({
-    -- on_attach = on_attach,
-    capabilities = capabilities,
-    filetypes = { 'html', 'javascript', 'typescript', 'typescriptreact', 'javascriptreact', 'css', 'sass', 'scss', 'less' },
-    init_options = {
-      html = {
-        options = {
-          -- For possible options, see: https://github.com/emmetio/emmet/blob/master/src/config.ts#L79-L267
-          ["bem.enabled"] = true,
-          ["jsx.enabled"] = true,
-        },
-      },
-      typescriptreact = {
-        options = {
-          ["jsx.enabled"] = true,
-        }
-      },
-      javascriptreact = {
-        options = {
-          ["jsx.enabled"] = true,
-        }
-      },
-    }
-})
-]]--
 
 local opts = {
-	-- whether to highlight the currently hovered symbol
-	-- disable if your cpu usage is higher than you want it
-	-- or you just hate the highlight
-	-- default: true
 	highlight_hovered_item = true,
 
 	-- whether to show outline guides

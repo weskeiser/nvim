@@ -125,7 +125,15 @@ return require('packer').startup(function()
   -- Nvim-tree
   use {
   'kyazdani42/nvim-tree.lua', tag = 'nightly' -- optional, updated every week. (see issue #1193)
-}
+  }
+
+  -- Java
+  use 'mfussenegger/nvim-jdtls'
+  use 'mfussenegger/nvim-dap'
+
+  use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
+
+
 
 
 

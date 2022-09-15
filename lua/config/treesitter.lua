@@ -21,7 +21,7 @@ require "nvim-treesitter.configs".setup {
 
 require'nvim-treesitter.configs'.setup {
   ensure_installed = {
-   'css', 'html', 'javascript', 'json', 'lua', 'typescript', 'tsx', 'vim', 'bash',
+   'css', 'html', 'javascript', 'json', 'lua', 'typescript', 'tsx', 'vim', 'bash', 'java'
   },
   highlight = {
     enable = true,
@@ -30,7 +30,8 @@ require'nvim-treesitter.configs'.setup {
     disable = function(lang, bufnr)
       local filetype = vim.fn.expand "%:t"
       local found = string.find(filetype, 'styled')
-      return lang == "tsx" and found
+      local styled = lang == "tsx" and found
+      return styled
     end
   },
   indent = {

@@ -106,22 +106,25 @@ map("n", "<Leader>,", "<C-^>")
 map("n", "gB", ":bnext<CR>")
 map("n", "gb", ":bprev<CR>")
 
-map("n", '<A-1>', '<Cmd>BufferGoto 1<CR>')
-map("n", '<A-2>', '<Cmd>BufferGoto 2<CR>')
-map("n", '<A-3>', '<Cmd>BufferGoto 3<CR>')
-map("n", '<A-4>', '<Cmd>BufferGoto 4<CR>')
-map("n", '<A-5>', '<Cmd>BufferGoto 5<CR>')
-map("n", '<A-6>', '<Cmd>BufferGoto 6<CR>')
-map("n", '<A-7>', '<Cmd>BufferGoto 7<CR>')
-map("n", '<A-8>', '<Cmd>BufferGoto 8<CR>')
-map("n", '<A-9>', '<Cmd>BufferGoto 9<CR>')
-map("n", '<A-0>', '<Cmd>BufferLast<CR>')
+
+-- Dap
+
+
+map("n", '<A-6>', '<Cmd>lua require("dapui").toggle()<CR>')
+map("n", '<A-7>', '<Cmd>lua require("dap").run_last()<CR>')
+map("n", '<A-8>', '<Cmd>DapContinue<CR>')
+
+map("n", '<A-0>', '<Cmd>DapTerminate<CR>')
 
 -- Window navigation
 map('n', '<C-h>', '<C-w>h')
 map('i', '<C-h>', '<C-w>h')
 map('n', '<C-l>', '<C-w>l')
 map('i', '<C-l>', '<C-w>l')
+
+map('n', '<C-Down>', '<C-w><C-j>')
+map('n', '<C-Up>', '<C-w><C-k>')
+
 -- Exchange window with neighbouring window
 map('n', '<C-S-l>', '<C-w>x<C-w><C-l>')
 map('n', '<C-S-h>', '<C-w>h<C-w>x')
