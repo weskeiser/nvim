@@ -79,6 +79,16 @@ _G.packer_plugins = {
     path = "/home/weskeiser/.local/share/nvim/site/pack/packer/start/LuaSnip",
     url = "https://github.com/L3MON4D3/LuaSnip"
   },
+  ["Vim-textobj-user"] = {
+    loaded = true,
+    path = "/home/weskeiser/.local/share/nvim/site/pack/packer/start/Vim-textobj-user",
+    url = "https://github.com/kana/Vim-textobj-user"
+  },
+  ["Vim-textobj-variable-segment"] = {
+    loaded = true,
+    path = "/home/weskeiser/.local/share/nvim/site/pack/packer/start/Vim-textobj-variable-segment",
+    url = "https://github.com/Julian/Vim-textobj-variable-segment"
+  },
   ["cmp-buffer"] = {
     loaded = true,
     path = "/home/weskeiser/.local/share/nvim/site/pack/packer/start/cmp-buffer",
@@ -113,6 +123,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/weskeiser/.local/share/nvim/site/pack/packer/start/emmet-vim",
     url = "https://github.com/mattn/emmet-vim"
+  },
+  ["eyeliner.nvim"] = {
+    loaded = true,
+    path = "/home/weskeiser/.local/share/nvim/site/pack/packer/start/eyeliner.nvim",
+    url = "https://github.com/jinh0/eyeliner.nvim"
   },
   ["formatter.nvim"] = {
     loaded = true,
@@ -160,10 +175,22 @@ _G.packer_plugins = {
     path = "/home/weskeiser/.local/share/nvim/site/pack/packer/start/nvim-autopairs",
     url = "https://github.com/windwp/nvim-autopairs"
   },
+  ["nvim-bqf"] = {
+    loaded = false,
+    needs_bufread = true,
+    only_cond = false,
+    path = "/home/weskeiser/.local/share/nvim/site/pack/packer/opt/nvim-bqf",
+    url = "https://github.com/kevinhwang91/nvim-bqf"
+  },
   ["nvim-cmp"] = {
     loaded = true,
     path = "/home/weskeiser/.local/share/nvim/site/pack/packer/start/nvim-cmp",
     url = "https://github.com/hrsh7th/nvim-cmp"
+  },
+  ["nvim-custom-diagnostic-highlight"] = {
+    loaded = true,
+    path = "/home/weskeiser/.local/share/nvim/site/pack/packer/start/nvim-custom-diagnostic-highlight",
+    url = "https://github.com/Kasama/nvim-custom-diagnostic-highlight"
   },
   ["nvim-dap"] = {
     loaded = true,
@@ -184,6 +211,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/weskeiser/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
     url = "https://github.com/neovim/nvim-lspconfig"
+  },
+  ["nvim-scrollbar"] = {
+    loaded = true,
+    path = "/home/weskeiser/.local/share/nvim/site/pack/packer/start/nvim-scrollbar",
+    url = "https://github.com/petertriho/nvim-scrollbar"
   },
   ["nvim-tree.lua"] = {
     loaded = true,
@@ -264,6 +296,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/weskeiser/.local/share/nvim/site/pack/packer/start/vim-surround",
     url = "https://github.com/tpope/vim-surround"
+  },
+  ["vim-swap"] = {
+    loaded = true,
+    path = "/home/weskeiser/.local/share/nvim/site/pack/packer/start/vim-swap",
+    url = "https://github.com/machakann/vim-swap"
   }
 }
 
@@ -272,6 +309,13 @@ time([[Defining packer_plugins]], false)
 time([[Config for nvim-autopairs]], true)
 try_loadstring("\27LJ\2\n@\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\19nvim-autopairs\frequire\0", "config", "nvim-autopairs")
 time([[Config for nvim-autopairs]], false)
+vim.cmd [[augroup packer_load_aucmds]]
+vim.cmd [[au!]]
+  -- Filetype lazy-loads
+time([[Defining lazy-load filetype autocommands]], true)
+vim.cmd [[au FileType qf ++once lua require("packer.load")({'nvim-bqf'}, { ft = "qf" }, _G.packer_plugins)]]
+time([[Defining lazy-load filetype autocommands]], false)
+vim.cmd("augroup END")
 
 _G._packer.inside_compile = false
 if _G._packer.needs_bufread == true then

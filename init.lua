@@ -16,28 +16,10 @@ require ('config/harpoon')
 require ('config/indent-blankline')
 require ('config/formatter')
 require ('config/keymaps')
+require ('config/custom-diagnostic-highlight')
+require ('config/eyeliner')
+require ('config/scrollbar')
 
-
---[[
--- Align barbar with nvimtree
-vim.api.nvim_create_autocmd('BufWinEnter', {
-  pattern = '*',
-  callback = function()
-    if vim.bo.filetype == 'NvimTree' then
-      require'bufferline.state'.set_offset(31, 'FileTree')
-    end
-  end
-})
-
-vim.api.nvim_create_autocmd('BufWinLeave', {
-  pattern = '*',
-  callback = function()
-    if vim.fn.expand('<afile>'):match('NvimTree') then
-      require'bufferline.state'.set_offset(0)
-    end
-  end
-})
-]]--
 
 
 -- Highlight on yank
@@ -45,14 +27,6 @@ vim.cmd 'au TextYankPost * silent! lua vim.highlight.on_yank({ higroup = "IncSea
 
 
 local autocmd = vim.api.nvim_create_autocmd
-
--- Close NvimTree
---[[
-autocmd('BufLeave', {
-  pattern = 'NvimTree_1',
-  command = "NvimTreeClose"
-})
-]]--
 
 -- Open :help as vsplit
 autocmd('BufEnter', {
@@ -76,3 +50,4 @@ autocmd('VimEnter', {
 autocmd('VimEnter', {
   command = ':unmap ]%'
 })
+

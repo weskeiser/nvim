@@ -105,6 +105,11 @@ return require('packer').startup(function()
   use 'mhartington/formatter.nvim'
   use 'fsouza/prettierd'
 
+  -- Highlight unused objects
+  ---- Possible replacement?: neodim
+  use 'Kasama/nvim-custom-diagnostic-highlight'
+
+
   --use 'styled-components/vim-styled-components'
 
 
@@ -118,8 +123,26 @@ return require('packer').startup(function()
     'windwp/nvim-ts-autotag'
   }
 
+  -- Eyeliner
+  use 'jinh0/eyeliner.nvim'
+
+  -- Quickfix helper
+  use {'kevinhwang91/nvim-bqf', ft = 'qf'}
+
+  -- Scrollbar
+  use("petertriho/nvim-scrollbar")
+
   -- Vim-surround
   use 'tpope/vim-surround'
+
+  -- Vim-textobj-user
+  use 'kana/Vim-textobj-user'
+
+  -- Vim-textobj-variable-segment
+  use { "Julian/Vim-textobj-variable-segment", requires = {"kana/Vim-textobj-user"} }
+
+  -- Vim-swap 
+  use 'machakann/vim-swap'
 
 
   -- Nvim-tree

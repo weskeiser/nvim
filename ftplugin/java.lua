@@ -14,6 +14,7 @@ local inoremap = bind("i")
 
 -----
 
+--[[]]
 local dap_status_ok, dap = pcall(require, "dap")
 if not dap_status_ok then
   return
@@ -47,6 +48,7 @@ dapui.setup {
   -- Elements are the elements shown in the layout (in order).
   -- Layouts are opened in order so that earlier layouts take priority in window sizing.
   layouts = {
+    --[[
     {
       elements = {
         -- Elements can be strings or table with id and size keys.
@@ -60,6 +62,7 @@ dapui.setup {
       size = 40, -- 40 columns
       position = "right",
     },
+    ]]--
     {
       elements = {
         "console",
@@ -100,10 +103,13 @@ dap.listeners.after.event_initialized["dapui_config"] = function()
 end
 dap.listeners.before.event_terminated["dapui_config"] = function()
   dapui.close {}
+  dapui.open {}
 end
 dap.listeners.before.event_exited["dapui_config"] = function()
   dapui.close {}
 end
+--[[
+]]--
 
 dap.defaults.fallback.external_terminal = {
     command = '/usr/bin/alacritty';
@@ -224,8 +230,14 @@ local config = {
     nnoremap("gD", function() vim.lsp.buf.declaration() end)
     nnoremap("gt", function() vim.lsp.buf.type_definition() end)
     nnoremap("gi", function() vim.lsp.buf.implementation() end)
-    nnoremap("<leader>e", function() vim.diagnostic.goto_next() end)
-    nnoremap("<leader>E", function() vim.diagnostic.goto_prev() end)
+    nnoremap("<leader>3", function() vim.diagnostic.goto_next() end)
+    nnoremap("<leader>#", function() vim.diagnostic.goto_prev() end)
+    nnoremap("<leader>e", function() vim.diagnostic.goto_next({
+      severity = vim.diagnostic.severity.ERROR
+    }) end)
+    nnoremap("<leader>E", function() vim.diagnostic.goto_prev({
+      severity = vim.diagnostic.severity.ERROR
+    }) end)
     --nnoremap("<C-i>", function() vim.diagnostic.open_float() end)
     nnoremap("<leader>i", function() vim.lsp.buf.hover() end)
     nnoremap("<leader>vws", function() vim.lsp.buf.workspace_symbol() end)
@@ -241,7 +253,8 @@ local config = {
   -- 💀
   -- This is the default if not provided, you can remove it. Or adjust as needed.
   -- One dedicated LSP server & client will be started per unique root_dir
-  root_dir = require('jdtls.setup').find_root({'.git', 'mvnw', 'gradlew'}),
+  root_dir = require('jdtls.setup').find_root({'.git', 'mvnw', 'gradlew', 'pom.xml', 'build.gradle'}),
+
 
   -- Here you can configure eclipse.jdt.ls specific settings
   -- See https://github.com/eclipse/eclipse.jdt.ls/wiki/Running-the-JAVA-LS-server-from-the-command-line#initialize-request
@@ -263,6 +276,25 @@ local config = {
         downloadSources = true,
       },
 
+      signatureHelp =  {
+        enabled = true,
+      },
+
+      contentProvider = { preferred = "fernflower" },
+
+      flags = {
+          allow_incremental_sync = true,
+        },
+
+      --[[
+      sources = {
+        organizeImports = {
+          starThreshold = 9999,
+          staticStarThreshold = 9999,
+        },
+      },
+      ]]--
+
       format = {
         enabled = false,
       },
@@ -283,13 +315,25 @@ local config = {
 -- This starts a new client & server,
 -- or attaches to an existing client & server depending on the `root_dir`.
 
+--[[
+vim.cmd "command! -buffer -nargs=? -complete=custom,v:lua.require'jdtls'._complete_compile JdtCompile lua require('jdtls').compile(<f-args>)"
+vim.cmd "command! -buffer -nargs=? -complete=custom,v:lua.require'jdtls'._complete_set_runtime JdtSetRuntime lua require('jdtls').set_runtime(<f-args>)"
+vim.cmd "command! -buffer JdtUpdateConfig lua require('jdtls').update_project_config()"
+-- vim.cmd "command! -buffer JdtJol lua require('jdtls').jol()"
+vim.cmd "command! -buffer JdtBytecode lua require('jdtls').javap()"
+-- vim.cmd "command! -buffer JdtJshell lua require('jdtls').jshell()"
+]]--
+
+
+
+
 
 require('jdtls').start_or_attach(config)
 
 
 local cl = {
   black = '#000000',
-  text = '#b5b6ba',
+  text = '#a0afd9',
   var = '#a88bb6',
   orange = '#de7621',
   yellow = '#fec671',
@@ -322,3 +366,10 @@ local highlightList = {
 for k, v in pairs(highlightList) do
   vim.api.nvim_set_hl(0, k, v)
 end
+
+
+local autocmd = vim.api.nvim_create_autocmd
+
+--autocmd('BufLeave', {
+  --command = "lua require('dapui').toggle()"
+--})

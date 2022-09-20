@@ -19,10 +19,17 @@ map("v", "d", '"+d')
 map("n", "dd", '"+dd')
 map("n", "D", '"+D')
 
-map("n", "c", '"+c')
-map("v", "c", '"+c')
-map("n", "C", '"+C')
-map("v", "C", '"+C')
+--map("n", "c", '"+c')
+--map("v", "c", '"+c')
+--map("n", "C", '"+C')
+--map("v", "C", '"+C')
+
+-- w -> e in visual and operational mode
+map("v", "w", 'e')
+map("o", "w", 'e')
+
+--map("n", "dw", '"+de')
+
 
 -- Save and quit
 map("n", "<C-s>", ":silent :w!<cr>", { noremap = true, silent = true })

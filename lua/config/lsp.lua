@@ -72,17 +72,23 @@ cmp.setup({
 
 local on_attach = function()
   nnoremap("gd", function() vim.lsp.buf.definition() end)
-  nnoremap("gD", function() vim.lsp.buf.declaration() end)
+  nnoremap("gD", function() vim.lsp.buf.implementation() end)
   nnoremap("gt", function() vim.lsp.buf.type_definition() end)
-  nnoremap("gi", function() vim.lsp.buf.implementation() end)
-  nnoremap("<leader>e", function() vim.diagnostic.goto_next() end)
-  nnoremap("<leader>E", function() vim.diagnostic.goto_prev() end)
-  --nnoremap("<C-i>", function() vim.diagnostic.open_float() end)
   nnoremap("<leader>i", function() vim.lsp.buf.hover() end)
-  nnoremap("<leader>vws", function() vim.lsp.buf.workspace_symbol() end)
   nnoremap("<leader>r", function() vim.lsp.buf.code_action() end)
-  nnoremap("<leader>vrr", function() vim.lsp.buf.references() end)
+
+  nnoremap("<leader>3", function() vim.diagnostic.goto_next() end)
+  nnoremap("<leader>#", function() vim.diagnostic.goto_prev() end)
+  nnoremap("<leader>e", function() vim.diagnostic.goto_next({
+    severity = vim.diagnostic.severity.ERROR
+  }) end)
+  nnoremap("<leader>E", function() vim.diagnostic.goto_prev({
+    severity = vim.diagnostic.severity.ERROR
+  }) end)
+
   nnoremap("<leader>vrn", function() vim.lsp.buf.rename() end)
+  nnoremap("<leader>vrr", function() vim.lsp.buf.references() end)
+  nnoremap("<leader>vws", function() vim.lsp.buf.workspace_symbol() end)
 end
 
 

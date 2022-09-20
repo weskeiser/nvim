@@ -89,6 +89,8 @@ require('material').setup({
     CmpItemKindInterface = { bg= '#323234', fg = c.type },
 
 
+
+
     -- Telescope
     TelescopeNormal = {  bg = c.bg },
     TelescopePromptNormal = { fg = c.orange_primary, bg = c.bg },

@@ -18,12 +18,14 @@ local c = {
   ]]--
 
   bg = '#2b2b2c',
-  bg_lighter = '#353536',
+  bg_light = '#353536',
+  bg_lighter = '#494d5a',
   background = '#212122',
   white = '#ffffff',
   green_primary =  '#6da832',
   orange_primary =  '#f99157',
   bright_green = '#66FF00',
+  cursorline = '#494d5a',
   light_grey = '#a6accd',
   dark_grey = '#313547',
   string_green = '#C3E88D',
@@ -68,19 +70,35 @@ local highlights = {
   CmpItemKindUnit = { bg=NONE, fg='#D4D4D4' },
   ]]--
 
-  Pmenu = { fg = '', bg = '#2b2b2c' },
+  Pmenu = { fg = '', bg = c.bg_light },
 
-  DiagnosticVirtualTextWarn = { fg = c.orange_primary, bg = c.bg_lighter },
-  DiagnosticVirtualTextError = {  fg = c.red_error, bg = c.bg_lighter },
-  DiagnosticVirtualTextHint = {  fg = c.yellow_error, bg = c.bg_lighter },
 
+  DiagnosticInformation = {  bg = c.bg_light },
+  DiagnosticInfo = {  bg = c.bg_light },
+
+  DiagnosticVirtualTextInfo = {  bg = c.bg_light },
+  DiagnosticVirtualTextWarn = { fg = c.orange_primary, bg = c.bg_light },
+  DiagnosticVirtualTextError = {  fg = c.red_error, bg = c.bg_light },
+  DiagnosticVirtualTextHint = {  fg = c.yellow_error, bg = c.bg_light },
+
+  DiagnosticSignInfo = {  bg = c.bg_light },
   DiagnosticSignError = {  fg = c.bg, bg = c.red_error },
   DiagnosticSignWarn = {  fg = c.bg, bg = c.orange_primary },
   DiagnosticSignHint = {  fg = c.bg, bg = c.yellow_error },
 
+  DiagnosticFloatingInfo = {  bg = c.bg_light },
+  DiagnosticFloatingError = { fg = c.red_error, bg = c.bg_light },
+  DiagnosticFloatingWarn = { fg = c.orange_primary, bg = c.bg_light },
+  DiagnosticFloatingHint = { fg = c.yellow_error, bg = c.bg_light },
+
+  Conceal = { fg = "#757c9f" },
+
+
+
   -- Nvim Foreground and Background
   Normal = { bg = c.bg },
   NormalNC = { bg = c.bg },
+  NormalFloat = { fg = '', bg = c.bg_light },
 
   -- Misc
   MatchParen = { fg = c.bright_green  },
@@ -88,7 +106,10 @@ local highlights = {
   -- Cursor and Line Number
   LineNr = {fg = c.green_primary},
   cursor = { fg = c.orange_primary, bg= c.green_primary},
-  cursorLineNr = {fg = c.orange_primary  },
+  cursorLineNr = {fg = c.orange_primary, bg = c.bg },
+  cursorLine = { bg = c.cursorline },
+
+
 
   -- Buffer
   BufferTabpageFill = { fg = c.dark_grey, bg = c.dark_grey },
@@ -114,6 +135,7 @@ local highlights = {
 
   TSVariable = { fg = c.variable },
   TSParameter = { fg = c.variable },
+  TSConstant = { fg = c.variable },
 
   TSRepeat = { fg = c.variable },
 
