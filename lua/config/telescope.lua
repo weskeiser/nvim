@@ -2,6 +2,8 @@ local actions = require("telescope.actions")
 
 require('telescope').setup({
   defaults = {
+    dynamic_preview_title = true,
+    results_title = false,
     path_display = function(opts, path)
       local tail = require("telescope.utils").path_tail(path)
       local test = #tail
@@ -30,15 +32,51 @@ require('telescope').setup({
       mirror = true,
     },
   },
+
   pickers = {
+
+    jumplist = {
+      initial_mode = "normal",
+      path_display = {"tail"},
+      layout_strategy = 'horizontal',
+      layout_config = {
+        horizontal = {
+          height = 0.9,
+          width = 0.9,
+          preview_width = 0.7,
+        },
+        mirror = false,
+      },
+    },
+
+    lsp_references = {
+      initial_mode = "normal",
+      layout_strategy = 'horizontal',
+      layout_config = {
+        horizontal = {
+          height = 0.9,
+          width = 0.9,
+          preview_width = 0.7,
+        },
+        mirror = false,
+      },
+    },
+
+    live_grep = {
+      prompt_title = ">>> Grep",
+    },
+
     buffers = {
+      prompt_title = ">>> Buffers",
       mappings = {
         n = {
           ['dd'] = actions.delete_buffer,
         },
       },
     },
+
     find_files = {
+      prompt_title = ">>> Files",
       mappings = {
         n = {
           ['qq'] = actions.close,

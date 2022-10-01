@@ -124,15 +124,20 @@ _G.packer_plugins = {
     path = "/home/weskeiser/.local/share/nvim/site/pack/packer/start/emmet-vim",
     url = "https://github.com/mattn/emmet-vim"
   },
-  ["eyeliner.nvim"] = {
+  ["example-plugin"] = {
     loaded = true,
-    path = "/home/weskeiser/.local/share/nvim/site/pack/packer/start/eyeliner.nvim",
-    url = "https://github.com/jinh0/eyeliner.nvim"
+    path = "/home/weskeiser/.local/share/nvim/site/pack/packer/start/example-plugin",
+    url = "/home/weskeiser/luaplugins/example-plugin"
   },
   ["formatter.nvim"] = {
     loaded = true,
     path = "/home/weskeiser/.local/share/nvim/site/pack/packer/start/formatter.nvim",
     url = "https://github.com/mhartington/formatter.nvim"
+  },
+  ["gitsigns.nvim"] = {
+    loaded = true,
+    path = "/home/weskeiser/.local/share/nvim/site/pack/packer/start/gitsigns.nvim",
+    url = "https://github.com/lewis6991/gitsigns.nvim"
   },
   harpoon = {
     loaded = true,
@@ -164,13 +169,17 @@ _G.packer_plugins = {
     path = "/home/weskeiser/.local/share/nvim/site/pack/packer/start/material.nvim",
     url = "https://github.com/marko-cerovac/material.nvim"
   },
+  neodim = {
+    loaded = true,
+    path = "/home/weskeiser/.local/share/nvim/site/pack/packer/start/neodim",
+    url = "https://github.com/zbirenbaum/neodim"
+  },
   ["neoscroll.nvim"] = {
     loaded = true,
     path = "/home/weskeiser/.local/share/nvim/site/pack/packer/start/neoscroll.nvim",
     url = "https://github.com/karb94/neoscroll.nvim"
   },
   ["nvim-autopairs"] = {
-    config = { "\27LJ\2\n@\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\19nvim-autopairs\frequire\0" },
     loaded = true,
     path = "/home/weskeiser/.local/share/nvim/site/pack/packer/start/nvim-autopairs",
     url = "https://github.com/windwp/nvim-autopairs"
@@ -187,10 +196,10 @@ _G.packer_plugins = {
     path = "/home/weskeiser/.local/share/nvim/site/pack/packer/start/nvim-cmp",
     url = "https://github.com/hrsh7th/nvim-cmp"
   },
-  ["nvim-custom-diagnostic-highlight"] = {
+  ["nvim-comment"] = {
     loaded = true,
-    path = "/home/weskeiser/.local/share/nvim/site/pack/packer/start/nvim-custom-diagnostic-highlight",
-    url = "https://github.com/Kasama/nvim-custom-diagnostic-highlight"
+    path = "/home/weskeiser/.local/share/nvim/site/pack/packer/start/nvim-comment",
+    url = "https://github.com/terrortylor/nvim-comment"
   },
   ["nvim-dap"] = {
     loaded = true,
@@ -227,6 +236,11 @@ _G.packer_plugins = {
     path = "/home/weskeiser/.local/share/nvim/site/pack/packer/start/nvim-treesitter",
     url = "https://github.com/nvim-treesitter/nvim-treesitter"
   },
+  ["nvim-treesitter-context"] = {
+    loaded = true,
+    path = "/home/weskeiser/.local/share/nvim/site/pack/packer/start/nvim-treesitter-context",
+    url = "https://github.com/nvim-treesitter/nvim-treesitter-context"
+  },
   ["nvim-treesitter-refactor"] = {
     loaded = true,
     path = "/home/weskeiser/.local/share/nvim/site/pack/packer/start/nvim-treesitter-refactor",
@@ -236,6 +250,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/weskeiser/.local/share/nvim/site/pack/packer/start/nvim-ts-autotag",
     url = "https://github.com/windwp/nvim-ts-autotag"
+  },
+  ["nvim-ts-context-commentstring"] = {
+    loaded = true,
+    path = "/home/weskeiser/.local/share/nvim/site/pack/packer/start/nvim-ts-context-commentstring",
+    url = "https://github.com/JoosepAlviste/nvim-ts-context-commentstring"
   },
   ["nvim-ts-rainbow"] = {
     loaded = true,
@@ -305,10 +324,6 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: nvim-autopairs
-time([[Config for nvim-autopairs]], true)
-try_loadstring("\27LJ\2\n@\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\19nvim-autopairs\frequire\0", "config", "nvim-autopairs")
-time([[Config for nvim-autopairs]], false)
 vim.cmd [[augroup packer_load_aucmds]]
 vim.cmd [[au!]]
   -- Filetype lazy-loads

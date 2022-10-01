@@ -25,6 +25,7 @@ local modes = {
 
 
 local c = {
+  NONE = 'NONE',
   funkygreen = '#18d18d' ,
   fg = "#685c56",
   bg = "#ff6a1a",
@@ -64,17 +65,18 @@ cmd("hi StatusLineAccent guifg=" .. c.light_grey .. " guibg=" .. c.accent or c.m
 cmd("hi StatusLineLines guifg=" .. c.light_grey .. " guibg=" .. c.accent)
 cmd("hi StatusLineTotalLines guifg=" .. c.dark_grey .. " guibg=" .. c.accent)
 cmd("hi StatusLineInsertAccent guifg=" .. c.dark_grey .. " guibg=" .. c.eggwhite)
-cmd("hi StatusLineVisualAccent guifg=" .. c.dark_grey .. " guibg=" .. c.smoothgreen)
+cmd("hi StatusLineVisualAccent guifg=" .. c.dark_grey .. " guibg=" .. c.brightgreen)
 cmd("hi StatusLineReplaceAccent guifg=" .. c.bg .. " guibg=" .. c.red)
 cmd("hi StatusLineCmdLineAccent guifg=" .. c.bg .. " guibg=" .. c.yellow)
 cmd("hi StatuslineTerminalAccent guifg=" .. c.bg .. " guibg=" .. c.yellow)
-cmd("hi StatusLineFilename guifg=" .. c.funkygreen .. " guibg=" .. c.bluish)
-cmd("hi StatusLineFilenameInactive guifg=" .. c.funkygreen .. " guibg=" .. c.background)
-cmd("hi StatusLineFilepath guifg=" .. c.orange_primary .. " guibg=" .. c.bluish)
+cmd("hi StatusLineFilename guifg=" .. c.funkygreen .. " guibg=" .. c.NONE)
+cmd("hi StatusLineFilename2 guifg=" .. c.orange_primary .. " guibg=" .. c.NONE)
+cmd("hi StatusLineFilenameInactive guifg=" .. c.light_grey .. " guibg=NONE")
+cmd("hi StatusLineFilepath guifg=" .. c.light_grey .. " guibg=" .. "#442212" )
 cmd("hi StatusLineExtra guifg=" .. c.light_grey .. " guibg=" .. c.bg)
 cmd("hi StatusLineFileModified guifg=" .. c.light_grey .. " guibg=" .. c.funkygreen)
 cmd("hi StatusLineBackground guibg=" .. c.bg)
-cmd("hi StatusLine guibg=" .. c.background)
+cmd("hi StatusLine guibg=NONE")
 
 cmd("hi LspDiagnosticsSignHint guifg=White" .. " guibg=" .. c.yellow_error)
 cmd("hi LspDiagnosticsSignInformation guifg=#ffffff" ..  " guibg=" .. c.bg)
@@ -85,10 +87,10 @@ cmd("hi LspDiagnosticsSignError guifg=White" .. " guibg=" .. c.red)
 local function filepath()
   local fpath = vim.fn.fnamemodify(vim.fn.expand "%", ":~:.:h")
   if fpath == "" or fpath == "." then
-      return " "
+      return ""
   end
 
-  return string.format(" %%<%s/", fpath)
+  return string.format(" %%<%s", fpath)
 end
 
 
@@ -98,7 +100,7 @@ local function filename()
   if fname == "" then
       return ""
   end
-  return " " .. fname .. " "
+  return "/" .. fname .. " "
 end
 
 -- Lsp
@@ -215,6 +217,9 @@ Statusline = {}
 Statusline.active = function()
   return table.concat {
     update_mode_colors_general(),
+    filename(),
+
+    update_mode_colors_general(),
     string.format("%s", totalLines()),
 
     update_mode_colors_general(),
@@ -240,8 +245,18 @@ end
 
 function Statusline.inactive()
   return table.concat {
+    "%#StatusLineFilename2# %t",
     "%=",
-    "%#StatusLineFilenameInactive#%f | %#StatusLineFilename# %t ",
+    "%#StatusLineFilename# %t",
+    --"%#StatusLineFilenameInactive#%f | %#StatusLineFilename# %t ",
+  }
+end
+
+function Statusline.focusLost()
+  return table.concat {
+    "%#StatusLineFilenameInactive# <<UNFOCUSED>>>>>>>>>>>>>>>>>>>",
+    "%=",
+     "%#StatusLineFilename# %t ",
   }
 end
 
@@ -258,8 +273,10 @@ vim.api.nvim_exec([[
   au WinEnter,BufEnter,FocusGained * setlocal statusline=%!v:lua.Statusline.active()
   au WinLeave,BufLeave,FocusLost * setlocal statusline=%!v:lua.Statusline.inactive()
   au WinEnter,BufEnter,FileType NvimTree_1 setlocal statusline=%!v:lua.Statusline.short()
+  au FocusLost * setlocal statusline=%!v:lua.Statusline.focusLost()
   augroup END
 ]], false)
+
 
 
 

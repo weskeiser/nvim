@@ -5,6 +5,10 @@ function map(mode, lhs, rhs, opts) local options = { noremap = true }
   vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
+
+map("n", "dt", "")
+map("n", "dT", "")
+
 -- Yank and paste to system clipboard
 map("v", "y", '"+y')
 map("n", "y", '"+y')
@@ -16,20 +20,19 @@ map("n", "P", '"+P')
 
 map("n", "d", '"+d')
 map("v", "d", '"+d')
-map("n", "dd", '"+dd')
 map("n", "D", '"+D')
-
---map("n", "c", '"+c')
---map("v", "c", '"+c')
---map("n", "C", '"+C')
---map("v", "C", '"+C')
+map("n", "dd", '"+dd')
 
 -- w -> e in visual and operational mode
 map("v", "w", 'e')
 map("o", "w", 'e')
 
---map("n", "dw", '"+de')
+-- Replace line with paste
+map("n", "<C-p>", 'VP')
 
+-- Move line in visual mode
+map('v', 'J', ":m '>+1<CR>gv=gv")
+map('v', 'K', ":m '<-2<CR>gv=gv")
 
 -- Save and quit
 map("n", "<C-s>", ":silent :w!<cr>", { noremap = true, silent = true })
@@ -55,12 +58,35 @@ map('n', '*', '*``')
 map("v", "<", "<gv", { noremap = true, silent = true })
 map("v", ">", ">gv", { noremap = true, silent = true })
 
--- Map # to be _
+-- Map @ to be _
+map('n', '@', '_')
+map('v', '@', '_')
+map('n', 'y@', '"+y0')
+map('n', 'c@', '"+c0')
+map('n', 'd@', '"+d0')
+
 map('n', '#', '_')
 map('v', '#', '_')
 map('n', 'y#', '"+y0')
 map('n', 'c#', '"+c0')
 map('n', 'd#', '"+d0')
+
+map('n', '<leader>k', 'gM')
+
+map('n', '<leader>h', '_')
+map('v', '<leader>h', '_')
+map('n', 'y<leader>h', '"+y0')
+map('n', 'c<leader>h', '"+c0')
+map('n', 'd<leader>h', '"+d0')
+
+map('n', '<leader>l', '$')
+map('v', '<leader>l', '$')
+map('n', 'y<leader>l', '"+y$')
+map('n', 'c<leader>l', '"+c$')
+map('n', 'd<leader>l', '"+d$')
+
+
+
 
 
 -- Map [{ and }] to [[ and ]]
@@ -80,13 +106,10 @@ map('n', 'd]]', '"+d]}')
 map("n", "<leader>j", "<cmd>lua require('telescope.builtin').find_files()<cr>")
 map("n", "<leader>g", "<cmd>lua require('telescope.builtin').live_grep()<cr>")
 map("n", "<leader>b", "<cmd>lua require('telescope.builtin').buffers()<cr>")
-map("n", "<leader>k", "<cmd>lua require('telescope.builtin').buffers()<cr>")
--- map("n", "<leader>fh", "<cmd>lua require('telescope.builtin').help_tags(require('telescope.themes').get_dropdown({}))<cr>", {noremap = true})
 
 -- Harpoon keymaps
-map("n", "<leader>l", "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>")
-map("n", "<leader>v", "<cmd>lua require('harpoon.mark').add_file()<cr>")
-map("n", "<leader>hc", "<cmd>lua require('harpoon.cmd-ui').toggle_quick_menu()<cr>")
+map("n", "<leader>o", "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>")
+map("n", "<leader><S-o>", "<cmd>lua require('harpoon.mark').add_file()<cr>")
 
 map("n", "<leader>a", "<cmd>lua require('harpoon.ui').nav_file(1)<cr>")
 map("n", "<leader>s", "<cmd>lua require('harpoon.ui').nav_file(2)<cr>")
@@ -100,12 +123,14 @@ map("i", "<C-w><C-t>", ":NvimTreeToggle<CR>", {noremap = true, silent = true})
 --map('n' ,'<C-t>', ':NvimTreeToggle<CR>', {noremap = true, silent = true})
 --map('n' ,'<C-t>', ':NvimTreeToggle<CR>', {noremap = true, silent = true})
 
+
+
 -- Search and replace the word under cursor
-map("n", "<Leader>*", ":%s/<C-r><C-w>//<Left>")
+map("n", "<Leader>*", ":%s/<C-r><C-w>//gc<Left><Left><Left>")
 
 -- Unmap DELETE button
-map('n' ,'<DEL>', '')
-map('i' ,'<DEL>', '')
+map('n', '<Del>', '<NOP>')
+map('i', '<Del>', '<NOP>')
 
 -- Buffer navigation
 map("n", "<Leader>,", "<C-^>")
@@ -140,9 +165,17 @@ map('n', '<C-S-h>', '<C-w>h<C-w>x')
 map('n', '<Down>', "<Cmd>lua require('neoscroll').scroll(0.10, false, 100)<CR>")
 map('n', '<Up>', "<Cmd>lua require('neoscroll').scroll(-0.10, false, 100)<CR>")
 
+
+
+
+-- t['<C-S-k>'] = {'scroll', {'-vim.wo.scroll', 'true', '100'}}
+-- t['<C-S-j>'] = {'scroll', {'vim.wo.scroll', 'true', '100'}}
+-- t['<C-k>'] = {'scroll', {'-0.20', 'true', '100'}}
+-- t['<C-j>'] = {'scroll', {'0.20', 'true', '100'}}
+
 -- Scroll by paragraph
-map('n', '[', '}')
-map('n', ']', '{')
+-- map('n', '[', '}')
+-- map('n', ']', '{')
 
 
 -- Terminal
@@ -166,8 +199,6 @@ map("c", "w!!", "w !sudo tee % >/dev/null<CR>:e!<CR><CR>")
 
 -- Clear search highlighting with <leader> and c
 map('n', '<leader>c', ':nohl<CR>')
-
-map('n', '<leader>h', "<cmd>lua require('telescope.builtin').find_files({cwd='~/code/mealplanner_new/client/' })<cr>")
 
 -- Emmet
 map('n', '<C-y><C-y>', '<Plug>(emmet-expand-abbr)')

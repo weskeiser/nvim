@@ -73,6 +73,7 @@ cmp.setup({
 local on_attach = function()
   nnoremap("gd", function() vim.lsp.buf.definition() end)
   nnoremap("gD", function() vim.lsp.buf.implementation() end)
+  nnoremap("gr", function() require('telescope.builtin').lsp_references() end)
   nnoremap("gt", function() vim.lsp.buf.type_definition() end)
   nnoremap("<leader>i", function() vim.lsp.buf.hover() end)
   nnoremap("<leader>r", function() vim.lsp.buf.code_action() end)
@@ -87,7 +88,6 @@ local on_attach = function()
   }) end)
 
   nnoremap("<leader>vrn", function() vim.lsp.buf.rename() end)
-  nnoremap("<leader>vrr", function() vim.lsp.buf.references() end)
   nnoremap("<leader>vws", function() vim.lsp.buf.workspace_symbol() end)
 end
 
@@ -98,7 +98,6 @@ local function config(_config)
 		on_attach = on_attach,
   }, _config or {})
 end
-			-- inoremap("<C-h>", function() vim.lsp.buf.signature_help() end)
 
 
 

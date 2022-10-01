@@ -7,7 +7,8 @@ local c = {
   orange_primary =  '#f99157',
   orange_darker = '#f76f26',
   --bg = '#303d55',
-  bg = '#2b2b2c',
+  --bg = '#2b2b2c',
+  bg = 'NONE',
   bg_dark = '#212a3b',
   bright_green = '#66FF00',
   light_grey = '#a6accd',
@@ -24,7 +25,7 @@ local c = {
   func = '#FEC56D',
   identifier = '#a0afd9',
   type = '#C792EA',
-
+  red = '#d04e4e',
 }
 
 require('material').setup({
@@ -55,11 +56,11 @@ require('material').setup({
 
 	high_visibility = {
 		lighter = false, -- Enable higher contrast text for lighter style
-		darker = true -- Enable higher contrast text for darker style
+		darker = false -- Enable higher contrast text for darker style
 	},
 
 	disable = {
-		colored_cursor = true, -- Disable the colored cursor
+		colored_cursor = false, -- Disable the colored cursor
 		borders = false, -- Disable borders between verticaly split windows
 		background = true, -- Prevent the theme from setting the background (NeoVim then uses your teminal background)
 		term_colors = false, -- Prevent the theme from setting terminal colors
@@ -82,13 +83,11 @@ require('material').setup({
     CmpItemKindFunction = { bg = '#323234', fg = c.const},
     CmpItemKindConstant = { bg = '#323234', fg = c.green_primary },
     CmpItemKindVariable = { bg = '#323234', fg = c.green_primary },
-    CmpItemKindMethod = { bg = '#727279', fg = c.identifier },
-    CmpItemKindField = { bg = '#727279', fg = c.identifier },
+    CmpItemKindMethod = { bg = '#323234', fg = c.identifier },
+    CmpItemKindField = { bg = '#323234', fg = c.identifier },
     CmpItemKindModule = { bg = '#727279', fg = c.const },
-    CmpItemKindKeyword = { bg = '#727279', fg = c.const },
+    CmpItemKindKeyword = { bg = '#323234', fg = c.white },
     CmpItemKindInterface = { bg= '#323234', fg = c.type },
-
-
 
 
     -- Telescope
@@ -112,10 +111,10 @@ require('material').setup({
     TelescopeMatching = { fg = c.orange_primary},
 
     --NvimTree
+    NvimTreeRootFolder = { fg = c.red },
     NvimTreeNormalNC = { bg = c.bg_dark_dark},
     NvimTreeFolderName = { fg =  c.orange_darker},
     NvimTreeOpenedFolderName = { fg =  c.orange_primary },
-    NvimTreeRootFolder = { fg = c.green_primary },
     --NvimTreeVertSplit = { fg= c.bg_dark_dark, bg= c.bg_dark},
     NvimTreeVertSplit = { fg= c.green_primary, bg= c.green_primary},
 

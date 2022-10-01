@@ -1,28 +1,13 @@
 local c = {
-  --[[
-  bg = '#303d55',
-  green_primary =  '#6da832',
-  orange_primary =  '#f99157',
-  bright_green = '#66FF00',
-  light_grey = '#a6accd',
-  dark_grey = '#313547',
-  string_green = '#C3E88D',
-  cyan = '#92cfe8',
-  --cyan = '#89DDFF',
-  blue = '#749ffb',
-  lightblue = '#8fb9f0',
-  propblue = '#A6ACCD',
-  pink = '#C792EA',
-  variable = '#788fc2'
-
-  ]]--
-
-  bg = '#2b2b2c',
+  --bg = '#2b2b2c',
+  bg = 'NONE',
   bg_light = '#353536',
   bg_lighter = '#494d5a',
   background = '#212122',
   white = '#ffffff',
-  green_primary =  '#6da832',
+  black = '#000000',
+  -- green_primary =  '#6da832',
+  green_primary =  '#91c360',
   orange_primary =  '#f99157',
   bright_green = '#66FF00',
   cursorline = '#494d5a',
@@ -32,17 +17,28 @@ local c = {
   cyan = '#92cfe8',
   --cyan = '#89DDFF',
   blue = '#749ffb',
-  pink = '#C792EA',
-  lightblue = '#8fb9f0',
+  pink = '#dc78ed',
+  blue_dark = '#243e61',
+  blue_darker = '#273445',
   --const = '#CB7832',
-  const = '#de7621',
+  -- const = '#de7621',
+  const = '#j26b24',
+  const = '#a881bb',
   --variable = '#9774A8',
-  variable = '#a88bb6',
+  -- variable = '#a881bb',
+  -- variable = '#c47ee7',
+  variable = '#6d7fc0',
+  --variable = '#759ecc',
+  variable = '#8499e7',
   string = '#688458',
   --property = '#969cbb',
-  property = '#b5b6ba',
+  property = '#a3a4a8',
   --func = '#FEC56D',
   func = '#fec671',
+  func = '#eeb259',
+  func = '#6c84da',
+  func = '#cb9543',
+  func = '#95b7ea',
   identifier = '#a0afd9',
   bright_pink = '#EA68DB',
   bright_blue = '#00A2FF',
@@ -50,27 +46,44 @@ local c = {
   bluish = '#303d55',
   yellow_error = '#FFCB6B',
   red_error = '#FF5370',
+  funkygreen = '#18d18d',
 }
 
 
+
+
 local highlights = {
-  -- Lsp
+  -- Nvim Foreground and Background
 
-  --[[
-  CmpItemAbbrDeprecated = { bg=NONE, gui=strikethrough, fg='#808080' },
-  CmpItemAbbrMatch = { bg=NONE, fg='#569CD6' },
-  CmpItemAbbrMatchFuzzy = { bg=NONE, fg='#569CD6' },
-  CmpItemKindVariable = { bg=NONE, fg='#9CDCFE' },
-  CmpItemKindInterface = { bg=NONE, fg='#9CDCFE' },
-  CmpItemKindText = { bg=NONE, fg='#9CDCFE' },
-  CmpItemKindFunction = { bg=NONE, fg='#C586C0' },
-  CmpItemKindMethod = { bg=NONE, fg='#C586C0' },
-  CmpItemKindKeyword = { bg=NONE, fg='#D4D4D4' },
-  CmpItemKindProperty = { bg=NONE, fg='#D4D4D4' },
-  CmpItemKindUnit = { bg=NONE, fg='#D4D4D4' },
-  ]]--
+  -- Normal = { bg = c.bg },
+  -- NormalNC = { bg = c.bg },
+  -- NormalFloat = { fg = '', bg = c.bg_light },
+  Normal = { bg = NONE,  },
+  NormalNC = { bg = NONE,  },
+  NormalFloat = { bg = c.dark_grey,  },
 
-  Pmenu = { fg = '', bg = c.bg_light },
+
+  -- Cursor and Line Number
+  LineNr = {fg = c.blue_dark},
+  Cursor = { bg= c.funkygreen},
+  CursorVisual = { bg = c.bright_green},
+  CursorPending = { bg = c.white},
+  cursorLineNr = {fg = c.orange_primary, bg = c.cursorline },
+  cursorLine = { bg = c.cursorline },
+  CursorLineSign = { bg = c.cursorline },
+
+
+  -- Misc
+  MatchParen = { fg = c.bright_green  },
+
+  TreesitterContext = { bg =  c.bg_light},
+  TreesitterContextLineNumber = { bg = c.bg_light, fg = c.orange_primary },
+
+
+
+
+
+  Pmenu = { fg = '', bg = NONE },
 
 
   DiagnosticInformation = {  bg = c.bg_light },
@@ -84,30 +97,15 @@ local highlights = {
   DiagnosticSignInfo = {  bg = c.bg_light },
   DiagnosticSignError = {  fg = c.bg, bg = c.red_error },
   DiagnosticSignWarn = {  fg = c.bg, bg = c.orange_primary },
-  DiagnosticSignHint = {  fg = c.bg, bg = c.yellow_error },
+  DiagnosticSignHint = {  fg = c.black, bg = c.yellow_error },
 
   DiagnosticFloatingInfo = {  bg = c.bg_light },
   DiagnosticFloatingError = { fg = c.red_error, bg = c.bg_light },
   DiagnosticFloatingWarn = { fg = c.orange_primary, bg = c.bg_light },
   DiagnosticFloatingHint = { fg = c.yellow_error, bg = c.bg_light },
 
-  Conceal = { fg = "#757c9f" },
+  --Conceal = { fg = "#757c9f" },
 
-
-
-  -- Nvim Foreground and Background
-  Normal = { bg = c.bg },
-  NormalNC = { bg = c.bg },
-  NormalFloat = { fg = '', bg = c.bg_light },
-
-  -- Misc
-  MatchParen = { fg = c.bright_green  },
-
-  -- Cursor and Line Number
-  LineNr = {fg = c.green_primary},
-  cursor = { fg = c.orange_primary, bg= c.green_primary},
-  cursorLineNr = {fg = c.orange_primary, bg = c.bg },
-  cursorLine = { bg = c.cursorline },
 
 
 
@@ -134,26 +132,27 @@ local highlights = {
   TSConstMacro = { fg = c.const },
 
   TSVariable = { fg = c.variable },
+  TSVariableBuiltin = { fg = c.variable },
+  TSPunctBracket = { fg = c.const },
   TSParameter = { fg = c.variable },
   TSConstant = { fg = c.variable },
 
-  TSRepeat = { fg = c.variable },
+  TSRepeat = { fg = c.const },
 
-  TSPunctDelimiter = { fg = c.func },
+  TSPunctDelimiter = { fg = c.const },
   TSTag = { fg = c.func },
 
+  TSOperator = { fg = c.const },
+  TSConditional = { fg = c.const },
+  TSException = { fg = c.const },
   TSInclude = { fg = c.const },
   TSURI = { fg = c.const },
   TSInclude = { fg = c.const },
-  TSKeywordReturn = { fg = c.const },
+  TSTagDelimiter = { fg = c.const },
+  TSKeywordReturn = { fg = c.cyan },
   TSPunctSpecial = { fg = c.identifier },
   TSStorageClass = { fg = c.identifier },
-  TSException = { fg = c.identifier },
-  TSConditional = { fg = c.identifier },
   TSEnvironment = { fg = c.identifier },
-  TSOperator = { fg = c.identifier },
-  TSPunctBracket = { fg = c.const },
-  TSTagDelimiter = { fg = c.const },
 
   TSString = { fg = c.green_primary },
 
@@ -172,14 +171,14 @@ local highlights = {
   TSMethodCall = { fg = c.func },
   TSConstructor = { fg = c.func },
   TSFuncBuiltin = { fg = c.func },
-  --Tag = { fg = '#ffffff' },
-  --Special = { fg = '#ffffff' },
-  --jsonTSLabel = { fg = '#A6ACCD' },
-  --jsonNoise = { fg = '#ffffff' },
 
+  -- EyelinerPrimary = { fg = c.white, underline = true },
+  -- EyelinerSecondary = {  fg = c.bright_blue, underline = true },
 }
 
 
 for k, v in pairs(highlights) do
   vim.api.nvim_set_hl(0, k, v)
 end
+
+

@@ -1,3 +1,5 @@
+vim.g.mapleader = " "
+vim.g.maplocalleader = "leader2"
 vim.o.ignorecase = true
 vim.o.smartcase = true
 vim.o.hlsearch = true
@@ -8,12 +10,10 @@ vim.o.textwidth = 80
 vim.o.breakindent = true
 --vim.o.breakindentopt = 'shift:8'
 vim.o.wrapmargin = 2
-vim.wo.cursorline = true
-vim.wo.cursorlineopt = "both"
---vim.wo.cursorlineopt = "number"
 vim.o.showmatch = true
 vim.o.history = 1000
-vim.o.scrolloff = 14
+--vim.o.scrolloff = 14
+vim.o.scrolloff = 60
 vim.o.autoindent = true
 vim.o.splitright = true
 vim.o.splitbelow = true
@@ -26,8 +26,14 @@ vim.o.cmdheight = 1
 vim.o.shortmess = vim.o.shortmess .. 'cI'
 --vim.o.colorcolumn = '80'
 
--- Cursor
 vim.opt.termguicolors = true
+
+-- Cursor
+vim.wo.cursorline = true
+vim.wo.cursorlineopt = "both"
+--vim.wo.cursorlineopt = "number"
+vim.o.guicursor = "a:blinkon100-blinkoff100,i-ci:ver1-Cursor,i-n-c:Cursor,v:CursorVisual,o:CursorPending"
+
 
 -- Misc
 vim.opt.smartindent = true

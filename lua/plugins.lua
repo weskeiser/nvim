@@ -50,6 +50,9 @@ return require('packer').startup(function()
   -- Useful lua functions used by many plugins
   use "nvim-lua/plenary.nvim"
 
+  --use 'iamcco/markdown-preview.nvim'
+  use { 'lewis6991/gitsigns.nvim'}
+
   -- Neoscroll - Smooth scrolling
   use 'karb94/neoscroll.nvim'
 
@@ -67,6 +70,8 @@ return require('packer').startup(function()
   use {
     'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'
   }
+
+  use 'nvim-treesitter/nvim-treesitter-context'
 
   use 'nvim-treesitter/playground'
 
@@ -107,30 +112,33 @@ return require('packer').startup(function()
 
   -- Highlight unused objects
   ---- Possible replacement?: neodim
-  use 'Kasama/nvim-custom-diagnostic-highlight'
+--  use 'Kasama/nvim-custom-diagnostic-highlight'
+  use 'zbirenbaum/neodim'
 
 
-  --use 'styled-components/vim-styled-components'
+
+ -- use 'styled-components/vim-styled-components'
 
 
   -- Autopairs
-  use {
-    "windwp/nvim-autopairs",
-      config = function() require("nvim-autopairs").setup {} end
-  }
+  use "windwp/nvim-autopairs"
 
   use {
     'windwp/nvim-ts-autotag'
   }
 
   -- Eyeliner
-  use 'jinh0/eyeliner.nvim'
+  --use 'jinh0/eyeliner.nvim'
 
   -- Quickfix helper
   use {'kevinhwang91/nvim-bqf', ft = 'qf'}
 
   -- Scrollbar
   use("petertriho/nvim-scrollbar")
+
+  -- Comment shortcuts
+  use "terrortylor/nvim-comment"
+  use 'JoosepAlviste/nvim-ts-context-commentstring'
 
   -- Vim-surround
   use 'tpope/vim-surround'
@@ -155,6 +163,8 @@ return require('packer').startup(function()
   use 'mfussenegger/nvim-dap'
 
   use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
+
+  use '~/luaplugins/example-plugin'
 
 
 
