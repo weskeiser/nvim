@@ -1,5 +1,5 @@
 vim.g.mapleader = " "
-vim.g.maplocalleader = "leader2"
+vim.o.mouse = ""
 vim.o.ignorecase = true
 vim.o.smartcase = true
 vim.o.hlsearch = true
@@ -18,12 +18,12 @@ vim.o.autoindent = true
 vim.o.splitright = true
 vim.o.splitbelow = true
 vim.o.equalalways = true
-vim.opt.guifont = {"JetBrainsMono Nerd Font Mono", "h10"}
-vim.o.signcolumn = 'yes:1'
-vim.o.cmdheight = 1
+vim.opt.guifont = { "JetBrainsMono Nerd Font Mono", "h10" }
+vim.o.signcolumn = "yes:1"
+vim.o.cmdheight = 0
 --vim.opt.formatoptions = "njvcrql"
 
-vim.o.shortmess = vim.o.shortmess .. 'cI'
+vim.o.shortmess = vim.o.shortmess .. "cI"
 --vim.o.colorcolumn = '80'
 
 vim.opt.termguicolors = true
@@ -33,7 +33,6 @@ vim.wo.cursorline = true
 vim.wo.cursorlineopt = "both"
 --vim.wo.cursorlineopt = "number"
 vim.o.guicursor = "a:blinkon100-blinkoff100,i-ci:ver1-Cursor,i-n-c:Cursor,v:CursorVisual,o:CursorPending"
-
 
 -- Misc
 vim.opt.smartindent = true

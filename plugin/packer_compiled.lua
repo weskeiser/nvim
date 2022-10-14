@@ -119,11 +119,6 @@ _G.packer_plugins = {
     path = "/home/weskeiser/.local/share/nvim/site/pack/packer/start/dracula.nvim",
     url = "https://github.com/Mofiqul/dracula.nvim"
   },
-  ["emmet-vim"] = {
-    loaded = true,
-    path = "/home/weskeiser/.local/share/nvim/site/pack/packer/start/emmet-vim",
-    url = "https://github.com/mattn/emmet-vim"
-  },
   ["example-plugin"] = {
     loaded = true,
     path = "/home/weskeiser/.local/share/nvim/site/pack/packer/start/example-plugin",
@@ -211,6 +206,11 @@ _G.packer_plugins = {
     path = "/home/weskeiser/.local/share/nvim/site/pack/packer/start/nvim-dap-ui",
     url = "https://github.com/rcarriga/nvim-dap-ui"
   },
+  ["nvim-dap-virtual-text"] = {
+    loaded = true,
+    path = "/home/weskeiser/.local/share/nvim/site/pack/packer/start/nvim-dap-virtual-text",
+    url = "https://github.com/theHamsta/nvim-dap-virtual-text"
+  },
   ["nvim-jdtls"] = {
     loaded = true,
     path = "/home/weskeiser/.local/share/nvim/site/pack/packer/start/nvim-jdtls",
@@ -235,11 +235,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/weskeiser/.local/share/nvim/site/pack/packer/start/nvim-treesitter",
     url = "https://github.com/nvim-treesitter/nvim-treesitter"
-  },
-  ["nvim-treesitter-context"] = {
-    loaded = true,
-    path = "/home/weskeiser/.local/share/nvim/site/pack/packer/start/nvim-treesitter-context",
-    url = "https://github.com/nvim-treesitter/nvim-treesitter-context"
   },
   ["nvim-treesitter-refactor"] = {
     loaded = true,

@@ -85,7 +85,6 @@ require('telescope').setup({
             local selection = require("telescope.actions.state").get_selected_entry()
             local dir = vim.fn.fnamemodify(selection.path, ":p:h")
             require("telescope.actions").close(prompt_bufnr)
-            -- Depending on what you want put `cd`, `lcd`, `tcd`
             vim.cmd(string.format("silent cd %s", dir))
             vim.cmd([[lua require("telescope.builtin").find_files()]])
           end,

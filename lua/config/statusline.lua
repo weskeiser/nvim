@@ -1,285 +1,265 @@
+local c = require("config.colors")
 local cmd = vim.cmd
 
 local modes = {
-  ["n"] = "NORMAL",
-  ["no"] = "NORMAL",
-  ["v"] = "VISUAL",
-  ["V"] = "VISUAL LINE",
-  [""] = "VISUAL BLOCK",
-  ["s"] = "SELECT",
-  ["S"] = "SELECT LINE",
-  [""] = "SELECT BLOCK",
-  ["i"] = "INSERT",
-  ["ic"] = "INSERT",
-  ["R"] = "REPLACE",
-  ["Rv"] = "VISUAL REPLACE",
-  ["c"] = "COMMAND",
-  ["cv"] = "VIM EX",
-  ["ce"] = "EX",
-  ["r"] = "PROMPT",
-  ["rm"] = "MOAR",
-  ["r?"] = "CONFIRM",
-  ["!"] = "SHELL",
-  ["t"] = "TERMINAL",
+	["n"] = "NORMAL",
+	["no"] = "NORMAL",
+	["v"] = "VISUAL",
+	["V"] = "VISUAL LINE",
+	[""] = "VISUAL BLOCK",
+	["s"] = "SELECT",
+	["S"] = "SELECT LINE",
+	[""] = "SELECT BLOCK",
+	["i"] = "INSERT",
+	["ic"] = "INSERT",
+	["R"] = "REPLACE",
+	["Rv"] = "VISUAL REPLACE",
+	["c"] = "COMMAND",
+	["cv"] = "VIM EX",
+	["ce"] = "EX",
+	["r"] = "PROMPT",
+	["rm"] = "MOAR",
+	["r?"] = "CONFIRM",
+	["!"] = "SHELL",
+	["t"] = "TERMINAL",
 }
 
-
-local c = {
-  NONE = 'NONE',
-  funkygreen = '#18d18d' ,
-  fg = "#685c56",
-  bg = "#ff6a1a",
-  accent = '#ff6a1a',
-  --background = "#303d55",
-  background = '#2b2b2c',
-  orange_primary =  '#ff6a1a',
-  bluish = '#303d55',
-  lightbg = "#e9e4e2",
-  fgfaded = "#948985",
-  grey = "#948985",
-  light_grey = "#948985",
-  dark_grey = "#383432",
-  bright = "#ffffff",
-  red = "#A8334C",
-  brightred = "#EE4B2B",
-  green = "#597a37",
-  blue = "#286486",
-  yellow = "#a8623e",
-  brightyellow = "#FFFF00",
-  magenta = "#88507D",
-  orange = "#944927",
-  cyan = "#3B8992",
-  brightyellow = "#FFFF00",
-  brightgreen = "#66FF00",
-  smoothgreen = "#6da832",
-  eggwhite = "#d1e0bc",
-  white = '#ffffff',
-  yellow_error = '#FFCB6B',
-  ViMode = {
-    Normal = "#26363c",
-  },
-}
-
-
-cmd("hi StatusLineAccent guifg=" .. c.light_grey .. " guibg=" .. c.accent or c.magenta)
-cmd("hi StatusLineLines guifg=" .. c.light_grey .. " guibg=" .. c.accent)
-cmd("hi StatusLineTotalLines guifg=" .. c.dark_grey .. " guibg=" .. c.accent)
-cmd("hi StatusLineInsertAccent guifg=" .. c.dark_grey .. " guibg=" .. c.eggwhite)
-cmd("hi StatusLineVisualAccent guifg=" .. c.dark_grey .. " guibg=" .. c.brightgreen)
-cmd("hi StatusLineReplaceAccent guifg=" .. c.bg .. " guibg=" .. c.red)
-cmd("hi StatusLineCmdLineAccent guifg=" .. c.bg .. " guibg=" .. c.yellow)
-cmd("hi StatuslineTerminalAccent guifg=" .. c.bg .. " guibg=" .. c.yellow)
-cmd("hi StatusLineFilename guifg=" .. c.funkygreen .. " guibg=" .. c.NONE)
-cmd("hi StatusLineFilename2 guifg=" .. c.orange_primary .. " guibg=" .. c.NONE)
-cmd("hi StatusLineFilenameInactive guifg=" .. c.light_grey .. " guibg=NONE")
-cmd("hi StatusLineFilepath guifg=" .. c.light_grey .. " guibg=" .. "#442212" )
-cmd("hi StatusLineExtra guifg=" .. c.light_grey .. " guibg=" .. c.bg)
-cmd("hi StatusLineFileModified guifg=" .. c.light_grey .. " guibg=" .. c.funkygreen)
-cmd("hi StatusLineBackground guibg=" .. c.bg)
 cmd("hi StatusLine guibg=NONE")
+cmd("hi StatusLineAccent guifg=" .. c.beige .. " guibg=" .. c.orange_strong or c.magenta)
+cmd("hi StatusLineInsert guifg=" .. c.dark_grey .. " guibg=" .. c.eggwhite)
+cmd("hi StatusLineVisual guifg=" .. c.dark_grey .. " guibg=" .. c.bright_green)
+cmd("hi StatusLineCmdLine guifg=" .. c.orange_strong .. " guibg=" .. c.orange_faded)
+cmd("hi StatuslineTerminal guifg=" .. c.orange_strong .. " guibg=" .. c.orange_faded)
 
-cmd("hi LspDiagnosticsSignHint guifg=White" .. " guibg=" .. c.yellow_error)
-cmd("hi LspDiagnosticsSignInformation guifg=#ffffff" ..  " guibg=" .. c.bg)
-cmd("hi LspDiagnosticsSignWarning guifg=" .. c.orange_primary ..  " guibg=White")
-cmd("hi LspDiagnosticsSignError guifg=White" .. " guibg=" .. c.red)
+cmd("hi StatusLineFilename guifg=" .. c.green_primary .. " guibg=" .. c.NONE)
+cmd("hi WinbarFilepath guifg=" .. c.identifier)
+cmd("hi StatusLineInactive guifg=" .. c.beige .. " guibg=NONE")
+cmd("hi StatusLineFileModified guifg=" .. c.beige .. " guibg=" .. c.funkygreen)
 
--- Filepath
-local function filepath()
-  local fpath = vim.fn.fnamemodify(vim.fn.expand "%", ":~:.:h")
-  if fpath == "" or fpath == "." then
-      return ""
-  end
+cmd("hi StatusLineOrange guifg=" .. c.orange_faded)
+cmd("hi StatusLineOrangeBg guifg=" .. c.dark_grey .. " guibg=" .. c.orange_strong)
 
-  return string.format(" %%<%s", fpath)
-end
-
-
--- Filename
-local function filename()
-  local fname = vim.fn.expand "%:t"
-  if fname == "" then
-      return ""
-  end
-  return "/" .. fname .. " "
-end
+cmd("hi LspDiagnosticsSignHint guifg=" .. c.white .. " guibg=" .. c.yellow_error)
+cmd("hi LspDiagnosticsSignInformation guifg=" .. c.white .. " guibg=" .. c.orange_strong)
+cmd("hi LspDiagnosticsSignWarning guifg=" .. c.orange_strong .. " guibg=White")
+cmd("hi LspDiagnosticsSignError guifg=" .. c.white .. " guibg=" .. c.red_secondary)
 
 -- Lsp
 local function lsp()
-  local count = {}
-  local levels = {
-    errors = "Error",
-    warnings = "Warn",
-    info = "Info",
-    hints = "Hint",
-  }
+	local count = {}
+	local levels = {
+		errors = "Error",
+		warnings = "Warn",
+		info = "Info",
+		hints = "Hint",
+	}
 
-  for k, level in pairs(levels) do
-    count[k] = vim.tbl_count(vim.diagnostic.get(0, { severity = level }))
-  end
+	for k, level in pairs(levels) do
+		count[k] = vim.tbl_count(vim.diagnostic.get(0, { severity = level }))
+	end
 
-  local errors = ""
-  local warnings = ""
-  local hints = ""
-  local info = ""
+	local errors = ""
+	local warnings = ""
+	local hints = ""
+	local info = ""
 
-  if count["errors"] ~= 0 then
-    errors = " %#LspDiagnosticsSignError#  " .. count["errors"]
-  end
-  if count["warnings"] ~= 0 then
-    warnings = " %#LspDiagnosticsSignWarning#  " .. count["warnings"]
-  end
-  if count["hints"] ~= 0 then
-    hints = " %#LspDiagnosticsSignHint#  " .. count["hints"]
-  end
-  if count["info"] ~= 0 then
-    info = " %#LspDiagnosticsSignInformation#  " .. count["info"]
-  end
+	if count["errors"] ~= 0 then
+		errors = " %#LspDiagnosticsSignError#  " .. count["errors"]
+	end
+	if count["warnings"] ~= 0 then
+		warnings = " %#LspDiagnosticsSignWarning#  " .. count["warnings"]
+	end
+	if count["hints"] ~= 0 then
+		hints = " %#LspDiagnosticsSignHint#  " .. count["hints"]
+	end
+	if count["info"] ~= 0 then
+		info = " %#LspDiagnosticsSignInformation#  " .. count["info"]
+	end
 
-  return errors .. warnings .. hints .. info .. " "
+	return errors .. warnings .. hints .. info .. " "
 end
 
--- Total lines in file
+local function filepath()
+	local fpath = vim.fn.fnamemodify(vim.fn.expand("%"), ":~:.:h")
+	if fpath == "" or fpath == "." then
+		return ""
+	end
+
+	return string.format("%%<%s/", fpath)
+end
+
+local function filename()
+	local fname = vim.fn.expand("%:t")
+	if fname == "" then
+		return ""
+	end
+	return "/" .. fname .. " "
+end
+
 local function totalLines()
-  return "~ %L%*"
+	return "~ %L%*"
 end
 
 local function columnCount()
-  return ":%v%*"
+	return ":%v%*"
 end
 
--- Filetype
-local function filetype()
-  return string.format(" %s ", vim.bo.filetype):upper()
-end
-
--- File modified
 local function fileModified()
-  return " %#StatusLineFileModified#%m% "
-end
-
--- Line info
-local function lineinfo()
-  if vim.bo.filetype == "alpha" then
-    return ""
-  end
-  return " %P "
-end
-
--- Buffer number
-local function buffernumber()
-  return "%n% "
+	return "%m"
 end
 
 -- Mode colors
-local function update_mode_colors_general()
-  local current_mode = vim.api.nvim_get_mode().mode
-  local mode_color = "%#StatusLineTotalLines#"
-  if current_mode == "n" then
-      mode_color = "%#StatusLineTotalLines#"
-  elseif current_mode == "i" or current_mode == "ic" then
-      mode_color = "%#StatuslineInsertAccent#"
-  elseif current_mode == "v" or current_mode == "V" or current_mode == "" then
-      --vim.o.cursorline = true
-      mode_color = "%#StatuslineVisualAccent#"
-  elseif current_mode == "R" then
-      mode_color = "%#StatuslineReplaceAccent#"
-  elseif current_mode == "c" then
-      mode_color = "%#StatuslineCmdLineAccent#"
-  elseif current_mode == "t" then
-      mode_color = "%#StatuslineTerminalAccent#"
-  end
-  return mode_color
-end
+local function updateColors()
+	local current_mode = vim.api.nvim_get_mode().mode
+	local mode_color = "%#StatusLineOrangeBg#"
 
-local function update_mode_colors_filepath()
-  local current_mode = vim.api.nvim_get_mode().mode
-  local mode_color = "%#StatusLineFilepath#"
-  if current_mode == "n" then
-      mode_color = "%#StatusLineFilepath#"
-  elseif current_mode == "i" or current_mode == "ic" then
-      mode_color = "%#StatuslineInsertAccent#"
-  elseif current_mode == "v" or current_mode == "V" or current_mode == "" then
-      --vim.o.cursorline = true
-      mode_color = "%#StatuslineVisualAccent#"
-  elseif current_mode == "R" then
-      mode_color = "%#StatuslineReplaceAccent#"
-  elseif current_mode == "c" then
-      mode_color = "%#StatuslineCmdLineAccent#"
-  elseif current_mode == "t" then
-      mode_color = "%#StatuslineTerminalAccent#"
-  end
-  return mode_color
+	if current_mode == "n" then
+		mode_color = "%#StatusLineOrangeBg#"
+	elseif current_mode == "i" or current_mode == "ic" then
+		mode_color = "%#StatuslineInsert#"
+	elseif current_mode == "v" or current_mode == "V" or current_mode == "" then
+		mode_color = "%#StatuslineVisual#"
+	elseif current_mode == "c" then
+		mode_color = "%#StatuslineCmdLine#"
+	elseif current_mode == "t" then
+		mode_color = "%#StatuslineTerminal#"
+	end
+
+	return mode_color
 end
 
 -- Building the statusline
 Statusline = {}
 
 Statusline.active = function()
-  return table.concat {
-    update_mode_colors_general(),
-    filename(),
+	return table.concat({
 
-    update_mode_colors_general(),
-    string.format("%s", totalLines()),
+		updateColors(),
+		"%=",
 
-    update_mode_colors_general(),
-    string.format("%s", columnCount()),
+		lsp(),
 
-    update_mode_colors_general(),
-    lsp(),
+		updateColors(),
+		"%=",
+	})
+end
 
-    update_mode_colors_general(),
-    fileModified(),
-
-    update_mode_colors_general(),
-    "%=",
-
---    update_mode_colors_filepath(),
-    "%#StatusLineFilepath#",
-    string.format("%s", filepath()),
-
-    "%#StatusLineFilename#",
-    filename(),
-  }
+function Statusline.nvim_tree()
+	return "%#StatusLineFilename#   NvimTree"
 end
 
 function Statusline.inactive()
-  return table.concat {
-    "%#StatusLineFilename2# %t",
-    "%=",
-    "%#StatusLineFilename# %t",
-    --"%#StatusLineFilenameInactive#%f | %#StatusLineFilename# %t ",
-  }
+	return table.concat({
+		"%#StatusLineInactive#",
+		"%=",
+
+		lsp(),
+
+		"%#StatusLineInactive#",
+		"%=",
+	})
 end
-
-function Statusline.focusLost()
-  return table.concat {
-    "%#StatusLineFilenameInactive# <<UNFOCUSED>>>>>>>>>>>>>>>>>>>",
-    "%=",
-     "%#StatusLineFilename# %t ",
-  }
-end
-
-function Statusline.short()
-  return "%#StatusLineFilename#   NvimTree"
-end
-
-
 
 -- Showing the statusline
-vim.api.nvim_exec([[
+vim.api.nvim_exec(
+	[[
   augroup Statusline
   au!
   au WinEnter,BufEnter,FocusGained * setlocal statusline=%!v:lua.Statusline.active()
   au WinLeave,BufLeave,FocusLost * setlocal statusline=%!v:lua.Statusline.inactive()
-  au WinEnter,BufEnter,FileType NvimTree_1 setlocal statusline=%!v:lua.Statusline.short()
-  au FocusLost * setlocal statusline=%!v:lua.Statusline.focusLost()
+  au WinEnter,BufEnter,FileType NvimTree_1 setlocal statusline=%!v:lua.Statusline.nvim_tree()
+  au FocusLost * setlocal statusline=%!v:lua.Statusline.inactive()
   augroup END
-]], false)
+]],
+	false
+)
 
+---------- WinBar ----------
 
+local icon_cache = {}
 
+local function get_icon(filename, extension)
+	if not filename then
+		-- if vim.bo.modified then
+		--   return "  %*"
+		-- end
+
+		if vim.bo.filetype == "terminal" then
+			filename = "terminal"
+			extension = "terminal"
+		else
+			filename = vim.fn.expand("%:t")
+		end
+	end
+
+	local cached = icon_cache[filename]
+	if not cached then
+		if not extension then
+			extension = vim.fn.fnamemodify(filename, ":e")
+		end
+		local file_icon, hl_group = require("nvim-web-devicons").get_icon(filename, extension)
+		cached = " " .. "%#" .. hl_group .. "#" .. file_icon .. " %*"
+		icon_cache[filename] = cached
+	end
+	return cached
+end
+
+local function show_modified()
+	if vim.bo.modified then
+		return "  %*"
+	else
+		return ""
+	end
+end
+
+local function show_icon()
+	local has_icon, icon = pcall(get_icon)
+	if has_icon then
+		return icon
+	else
+		return ""
+	end
+end
+
+local isempty = function(s)
+	return s == nil or s == ""
+end
+
+local is_current = function()
+	local winid = vim.g.actual_curwin
+	if isempty(winid) then
+		return false
+	else
+		return winid == tostring(vim.api.nvim_get_current_win())
+	end
+end
+
+function get_winbar()
+	local filepathColor = "%#WinbarFilepath#"
+
+	if is_current() then
+		filepathColor = "%#StatusLineOrange#"
+	end
+
+	return table.concat({
+		"%=",
+
+		"%#StatusLineOrange#",
+		show_modified(),
+
+		show_icon(),
+
+		filepathColor,
+		filepath(),
+
+		"%#StatusLineFilename#",
+		"%t",
+
+		"%=",
+	})
+end
+
+vim.o.winbar = "%{%v:lua.get_winbar()%}"
 
 -- https://github.com/nuxshed/dotfiles/tree/main/config/nvim/lua
 -- https://nuxsh.is-a.dev/blog/custom-nvim-statusline.html
-
